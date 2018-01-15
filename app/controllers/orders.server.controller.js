@@ -22,9 +22,6 @@ exports.create = function(req, res) {
 	var order = new Order(req.body);
 
 	// Set the order's 'creator' property
-	// order.creator = req.user;
-
-	console.log(order);
 
 	// Try saving the order
 	order.save(function(err) {

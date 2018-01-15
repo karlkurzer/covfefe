@@ -5,6 +5,11 @@
 	<title><%= title %></title>
 </head>
 <body>
+	<div>
+		<a href="/#!/">
+			<img src="/../../assets/images/icon/favicon-32x32.png" alt="Home">
+		</a>
+	</div>
   	<!-- Display flash messages  -->
 	<% for(var i in messages) { %>
 	   <div class="flash"><%= messages[i] %></div>
@@ -36,10 +41,5 @@
 			<input type="submit" value="Sign up" />
 		</div>
 	</form>
-
-	<!-- Render the OAuth authentication links  -->
-	<a href="/oauth/facebook">Sign in with Facebook</a>
-	<a href="/oauth/twitter">Sign in with Twitter</a>
-	<a href="/oauth/google">Sign in with Google</a>
 </body>
 </html>
