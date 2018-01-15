@@ -22,7 +22,9 @@ exports.create = function(req, res) {
 	var order = new Order(req.body);
 
 	// Set the order's 'creator' property
-	order.creator = req.user;
+	// order.creator = req.user;
+
+	console.log(order);
 
 	// Try saving the order
 	order.save(function(err) {
@@ -41,7 +43,9 @@ exports.create = function(req, res) {
 // Create a new controller method that retrieves a list of orders
 exports.list = function(req, res) {
 	// Use the model 'find' method to get a list of orders
-	Order.find().sort('-created').populate('creator', 'firstName lastName fullName').exec(function(err, orders) {
+	Order.find().sort('-created')
+	.populate('creator', 'firstName lastName fullName')
+	.populate('items', 'name price').exec(function(err, orders) {
 		if (err) {
 			// If an error occurs send the error message
 			return res.status(400).send({

@@ -2,7 +2,7 @@
 <section data-ng-controller="ItemsController" data-ng-init="find()">
 	<h1>Items</h1>
 	<table>
-		<tr data-ng-repeat="item in items">
+		<tr data-ng-repeat="item in items" data-ng-click="addToOrder(item)">
 			<td>{{ item.name }}</td>
 			<td>{{ item.price }}</td>
 		</tr>

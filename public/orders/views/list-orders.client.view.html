@@ -1,10 +1,16 @@
 <!-- The list orders view -->
+<section data-ng-include="'/../../example/views/header.client.view.html'"></section>
 <section data-ng-controller="OrdersController" data-ng-init="find()">
 	<h1>Orders</h1>
 	<table>
-		<tr data-ng-repeat="order in orders">
-			<td>{{ order.items }}</td>
-			<td>{{ order.creator }}</td>
+		<tr data-ng-repeat="order in orders track by $index">
+			<td><a data-ng-href="#!/orders/{{order._id}}">{{$index}} | </a></td>
+			<td>{{order.createdAt | date: 'short'}} | </td>
+			<td>{{order.creator.fullName}} | </td>
+			<td>{{order.total | currency:'EUR '}} | </td>
+			<td data-ng-repeat="item in order.items">
+				{{ item.name }};
+			</td>
 		</tr>
 	</table>
 </section>

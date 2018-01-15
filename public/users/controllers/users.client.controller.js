@@ -2,10 +2,15 @@
 'use strict';
 
 // Create the 'users' controller
-angular.module('users').controller('UsersController', ['$scope', '$routeParams', '$location', 'Authentication', 'Users',
-    function($scope, $routeParams, $location, Authentication, Users) {
+angular.module('users').controller('UsersController', ['$scope', '$routeParams', '$location', 'Authentication', 'Users', 'CurrentOrder',
+    function($scope, $routeParams, $location, Authentication, Users, CurrentOrder) {
     	// Expose the Authentication service
         $scope.authentication = Authentication;
+        $scope.currentOrder = CurrentOrder;
+
+        $scope.orderBy = function(user) {
+            $scope.currentOrder.creator = user;
+        }
 
         // Create a new controller method for creating new users
         $scope.create = function() {

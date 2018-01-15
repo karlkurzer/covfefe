@@ -13,7 +13,13 @@ var OrderSchema = new Schema({
 	}],
 	creator: {
 		type: Schema.ObjectId,
-		ref: 'User'
+		ref: 'User',
+		required: true
+	},
+	total : {
+		type: Number,
+		default: 0,
+		required: true
 	}
 }, 
 {

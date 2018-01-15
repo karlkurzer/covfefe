@@ -10,7 +10,7 @@ module.exports = function(app) {
 	// Set up the 'orders' base routes 
 	app.route('/api/orders')
 	   .get(orders.list)
-	   .post(users.requiresLogin, orders.create);
+	   .post(orders.create);
 	
 	// Set up the 'orders' parameterized routes
 	app.route('/api/orders/:orderId')

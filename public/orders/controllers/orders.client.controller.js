@@ -2,22 +2,32 @@
 'use strict';
 
 // Create the 'orders' controller
-angular.module('orders').controller('OrdersController', ['$scope', '$routeParams', '$location', 'Authentication', 'Orders',
-    function($scope, $routeParams, $location, Authentication, Orders) {
+angular.module('orders').controller('OrdersController', ['$scope', '$routeParams', '$location', 'Authentication', 'Orders', 'CurrentOrder',
+    function($scope, $routeParams, $location, Authentication, Orders, CurrentOrder) {
     	// Expose the Authentication service
         $scope.authentication = Authentication;
+        $scope.currentOrder = CurrentOrder;
+
+        $scope.reset = function(){
+            console.log($scope.currentOrder);
+            $scope.currentOrder.items = [];
+            $scope.currentOrder.creator = {};
+            $scope.currentOrder.total = 0;
+            console.log($scope.currentOrder);
+        };
 
         // Create a new controller method for creating new orders
         $scope.create = function() {
         	// Use the form fields to create a new order $resource object
             var order = new Orders({
-                title: this.title,
-                content: this.content
+                items: $scope.currentOrder.items,
+                creator: $scope.currentOrder.creator._id,
+                total: $scope.currentOrder.total
             });
 
             // Use the order '$save' method to send an appropriate POST request
             order.$save(function(response) {
-            	// If an order was created successfully, redirect the user to the order's page 
+                // If an order was created successfully, redirect the user to the order's page 
                 $location.path('orders/' + response._id);
             }, function(errorResponse) {
             	// Otherwise, present the user with the error message

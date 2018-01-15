@@ -2,10 +2,11 @@
 'use strict';
 
 // Create the 'items' controller
-angular.module('items').controller('ItemsController', ['$scope', '$routeParams', '$location', 'Authentication', 'Items',
-    function($scope, $routeParams, $location, Authentication, Items) {
+angular.module('items').controller('ItemsController', ['$scope', '$routeParams', '$location', 'Authentication', 'Items', 'CurrentOrder',
+    function($scope, $routeParams, $location, Authentication, Items, CurrentOrder) {
     	// Expose the Authentication service
         $scope.authentication = Authentication;
+        $scope.currentOrder = CurrentOrder;
 
         $scope.currentName = "";
         $scope.currentSymbol = "";
@@ -28,6 +29,10 @@ angular.module('items').controller('ItemsController', ['$scope', '$routeParams',
           }
         };
 
+        $scope.addToOrder = function(item) {
+            $scope.currentOrder.items.push(item);
+            $scope.currentOrder.total += item.price;
+        };
 
         // Create a new controller method for creating new items
         $scope.create = function() {
