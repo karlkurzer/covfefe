@@ -26,6 +26,9 @@ var OrderSchema = new Schema({
 		type: Schema.ObjectId,
 		ref: 'User'
 	}
+}, 
+{
+	timestamps: true
 });
 
 // Create the 'Order' model out of the 'OrderSchema'

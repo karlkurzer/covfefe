@@ -44,11 +44,9 @@ var UserSchema = new Schema({
 	},
 	providerId: String,
 	providerData: {},
-	created: {
-		type: Date,
-		// Create a default 'created' value
-		default: Date.now
-	}
+}, 
+{
+	timestamps: true
 });
 
 // Set the 'fullname' virtual property

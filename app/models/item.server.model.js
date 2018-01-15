@@ -15,6 +15,9 @@ var ItemSchema = new Schema({
         type: Number,
         required: true
     }
+}, 
+{
+	timestamps: true
 });
 
 // Create the 'Item' model out of the 'ItemSchema'
