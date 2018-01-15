@@ -1,0 +1,27 @@
+<!-- The edit order view -->
+<section data-ng-controller="OrdersController" data-ng-init="findOne()">
+	<h1>Edit Order</h1>
+	<!-- The edited order form -->
+	<form data-ng-submit="update()" novalidate>
+		<div>
+			<label for="title">Title</label>
+			<div>
+				<input type="text" data-ng-model="order.title" id="title" placeholder="Title" required>
+			</div>
+		</div>
+		<div>
+			<label for="content">Content</label>
+			<div>
+				<textarea data-ng-model="order.content" id="content" cols="30" rows="10" placeholder="Content"></textarea>
+			</div>
+		</div>
+		<div>
+			<input type="submit" value="Update">
+		</div>
+		<!-- The error message element -->
+		<div data-ng-show="error">
+			<strong data-ng-bind="error"></strong>
+		</div>
+	</form>
+	</div>
+</section>

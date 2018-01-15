@@ -1,0 +1,10 @@
+{
+  "name": "covfefe",
+  "version": "0.0.8",
+  "dependencies": {
+    "angular": "~1.4",
+    "angular-route": "~1.4",
+    "angular-resource": "~1.4",
+    "angular-chart.js": "~1.1.1"
+  }
+}

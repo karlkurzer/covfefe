@@ -1,0 +1,19 @@
+<!-- The list orders view -->
+<section data-ng-controller="OrdersController" data-ng-init="find()">
+	<h1>Orders</h1>
+	<ul>
+		<!-- The list of order -->
+		<li data-ng-repeat="order in orders">
+			<a data-ng-href="#!/orders/{{order._id}}" data-ng-bind="order.title"></a>
+			<br>
+			<small data-ng-bind="order.created | date:'medium'"></small>
+			<small>/</small>
+			<small data-ng-bind="order.creator.fullName"></small>
+			<p data-ng-bind="order.content"></p>
+		</li>
+	</ul>
+	<!-- If there are no orders in the list, suggest the user's create a new order -->
+	<div data-ng-hide="!orders || orders.length">
+		No orders yet, why don't you <a href="/#!/orders/create">create one</a>?
+	</div>
+</section>

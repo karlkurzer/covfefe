@@ -1,0 +1,14 @@
+<!-- The article view -->
+<section data-ng-controller="ItemsController" data-ng-init="findOne()">
+	<h1>Some Item</h1>
+	<canvas id="line" class="chart chart-line" chart-data="chartData" chart-labels="chartLabels" chart-series="chartSeries" chart-options="chartOptions"
+	    chart-dataset-override="chartDatasetOverride" chart-click="onClick">
+	</canvas>
+	<!-- <table>
+		<tr data-ng-repeat="entries in item | filter:symbol">
+			<td>{{ entries.symbol }}</td>
+			<td>{{ entries.price_usd }}</td>
+			<td>{{ entries.last_updated*1000 | date:'shortTime' }}</td>
+		</tr>
+	</table> -->
+</section>

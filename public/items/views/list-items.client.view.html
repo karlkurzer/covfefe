@@ -1,0 +1,10 @@
+<!-- The list items view -->
+<section data-ng-controller="ItemsController" data-ng-init="find()">
+	<h1>Items</h1>
+	<table>
+		<tr data-ng-repeat="item in items">
+			<td>{{ item.name }}</td>
+			<td>{{ item.price }}</td>
+		</tr>
+	</table>
+</section>

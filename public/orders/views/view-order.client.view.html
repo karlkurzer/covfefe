@@ -1,0 +1,16 @@
+<!-- The order view -->
+<section data-ng-controller="OrdersController" data-ng-init="findOne()">
+	<h1 data-ng-bind="order.title"></h1>
+	<!-- Show the editing buttons to the order creator -->
+	<div data-ng-show="authentication.user._id == order.creator._id">
+		<a href="/#!/orders/{{order._id}}/edit">edit</a>
+		<a href="/#!/" data-ng-click="delete();">delete</a>
+	</div>
+	<small>
+		<em>Posted on</em>
+		<em data-ng-bind="order.created | date:'mediumDate'"></em>
+		<em>by</em>
+		<em data-ng-bind="order.creator.fullName"></em>
+	</small>
+	<p data-ng-bind="order.content"></p>
+</section>
