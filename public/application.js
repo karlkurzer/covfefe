@@ -5,7 +5,7 @@
 var mainApplicationModuleName = 'covfefe';
 
 // Create the main application
-var mainApplicationModule = angular.module(mainApplicationModuleName, ['ngResource', 'ngRoute', 'users', 'example', 'articles', 'items', 'orders', 'chart.js']);
+var mainApplicationModule = angular.module(mainApplicationModuleName, ['ngResource', 'ngRoute', 'example', 'users', 'articles', 'items', 'orders', 'chart.js']);
 
 // Configure the hashbang URLs using the $locationProvider services 
 mainApplicationModule.config(['$locationProvider',

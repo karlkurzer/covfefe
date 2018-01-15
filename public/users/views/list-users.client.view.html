@@ -1,0 +1,10 @@
+<!-- The list users view -->
+<section data-ng-controller="UsersController" data-ng-init="find()">
+	<h1>Users</h1>
+	<table>
+		<tr data-ng-repeat="user in users">
+			<td>{{ user.firstName }}</td>
+			<td>{{ user.lastName }}</td>
+		</tr>
+	</table>
+</section>

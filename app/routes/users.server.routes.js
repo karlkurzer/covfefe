@@ -7,6 +7,10 @@ var users = require('../../app/controllers/users.server.controller'),
 
 // Define the routes module' method
 module.exports = function(app) {
+
+	app.route('/api/users')
+		.get(users.list)
+
 	// Set up the 'signup' routes 
 	app.route('/signup')
 	   .get(users.renderSignup)

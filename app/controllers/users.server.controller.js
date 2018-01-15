@@ -33,6 +33,22 @@ var getErrorMessage = function(err) {
 	return message;
 };
 
+// Create a new controller method that retrieves a list of users
+exports.list = function(req, res) {
+	// Use the model 'find' method to get a list of users
+	User.find().sort('-lastName').exec(function(err, users) {
+		if (err) {
+			// If an error occurs send the error message
+			return res.status(400).send({
+				message: getErrorMessage(err)
+			});
+		} else {
+			// Send a JSON representation of the article 
+			res.json(users);
+		}
+	});
+};
+
 // Create a new controller method that renders the signin page
 exports.renderSignin = function(req, res, next) {
 	// If user is not connected render the signin page, otherwise redirect the user back to the main application page

@@ -7,21 +7,10 @@ var mongoose = require('mongoose'),
 
 // Define a new 'OrderSchema'
 var OrderSchema = new Schema({
-	created: {
-		type: Date,
-		default: Date.now
-	},
-	title: {
-		type: String,
-		default: '',
-		trim: true,
-		required: 'Title cannot be blank'
-	},
-	content: {
-		type: String,
-		default: '',
-		trim: true
-	},
+	items: [{
+		type: Schema.ObjectId,
+		ref: 'Item'
+	}],
 	creator: {
 		type: Schema.ObjectId,
 		ref: 'User'
