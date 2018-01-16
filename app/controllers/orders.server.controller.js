@@ -65,6 +65,7 @@ exports.read = function(req, res) {
 // Create a new controller method that updates an existing order
 exports.update = function(req, res) {
 	// Get the order from the 'request' object
+	var balanceUpdate = req.order.total - req.body.total;
 	var order = req.order;
 
 	// Update the order fields
@@ -79,7 +80,7 @@ exports.update = function(req, res) {
 				message: getErrorMessage(err)
 			});
 		} else {
-			req.user.balance += order.total;
+			req.user.balance += balanceUpdate;
 			User.findByIdAndUpdate(req.user._id, { balance: req.user.balance }, function() {
 				// Send a JSON representation of the order 
 				res.json(order);
