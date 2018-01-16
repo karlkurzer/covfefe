@@ -1,27 +1,36 @@
-<!-- The edit order view -->
-<section data-ng-controller="OrdersController" data-ng-init="findOne()">
-	<h1>Edit Order</h1>
-	<!-- The edited order form -->
-	<form data-ng-submit="update()" novalidate>
-		<div>
-			<label for="title">Title</label>
-			<div>
-				<input type="text" data-ng-model="order.title" id="title" placeholder="Title" required>
-			</div>
-		</div>
-		<div>
-			<label for="content">Content</label>
-			<div>
-				<textarea data-ng-model="order.content" id="content" cols="30" rows="10" placeholder="Content"></textarea>
-			</div>
-		</div>
-		<div>
-			<input type="submit" value="Update">
-		</div>
-		<!-- The error message element -->
-		<div data-ng-show="error">
-			<strong data-ng-bind="error"></strong>
-		</div>
-	</form>
+<!-- The order view -->
+<div class="row" data-ng-controller="OrdersController" data-ng-init="findOne()">
+	<h1>Order</h1>
+	<h3>by {{ order.creator.fullName }} @ {{ order.createdAt | date: 'short' }}</h3>
+	<!-- Show the editing buttons to the order creator -->
+	<table class="table table-condensed table-hover">
+		<thead>
+			<tr>
+				<th>Price</th>
+				<th>Name</th>
+				<th>Remove</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-ng-repeat="item in order.items">
+				<td>{{ item.price | currency:'EUR ' }}</td>
+				<td>{{ item.name }}</td>
+				<td style="cursor: pointer;">
+					<span data-ng-click="removeFromOrder($index);" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+				</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr class="success">
+				<td>Total</td>
+				<td> {{ order.total | currency:'EUR '}}</td>
+			</tr>
+		</tfoot>
+	</table>
+	<div>
+		<button class="btn btn-default" data-ng-click="update();">update</button>
+		<a href="#!/">
+			<button class="btn btn-default">back</button>
+		</a>
 	</div>
-</section>
+</div>

@@ -10,6 +10,10 @@ var mongoose = require('mongoose'),
 var UserSchema = new Schema({
 	firstName: String,
 	lastName: String,
+	balance: { 
+		type: Number,
+		default: 0
+	},
 	email: {
 		type: String,
 		// Validate the email format

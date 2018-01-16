@@ -9,11 +9,22 @@ angular.module('orders').controller('OrdersController', ['$scope', '$routeParams
         $scope.currentOrder = CurrentOrder;
 
         $scope.reset = function(){
-            console.log($scope.currentOrder);
             $scope.currentOrder.items = [];
             $scope.currentOrder.creator = {};
             $scope.currentOrder.total = 0;
-            console.log($scope.currentOrder);
+        };
+
+        $scope.viewOne = function (order) {
+            $location.path('orders/' + order._id);
+        };
+
+        $scope.editOne = function (order) {
+            $location.path('orders/' + order._id + '/edit');
+        };
+
+        $scope.removeFromOrder = function (index) {
+            var item = $scope.order.items.splice(index, 1);
+            $scope.order.total -= item[0].price;
         };
 
         // Create a new controller method for creating new orders
@@ -27,7 +38,8 @@ angular.module('orders').controller('OrdersController', ['$scope', '$routeParams
 
             // Use the order '$save' method to send an appropriate POST request
             order.$save(function(response) {
-                // If an order was created successfully, redirect the user to the order's page 
+                // If an order was created successfully, redirect the user to the order's page
+                $scope.reset();
                 $location.path('orders/' + response._id);
             }, function(errorResponse) {
             	// Otherwise, present the user with the error message
@@ -51,7 +63,8 @@ angular.module('orders').controller('OrdersController', ['$scope', '$routeParams
 
         // Create a new controller method for updating a single order
         $scope.update = function() {
-        	// Use the order '$update' method to send an appropriate PUT request
+            if ( $scope.order.items.length == 0) $scope.delete();
+            // Use the order '$update' method to send an appropriate PUT request
             $scope.order.$update(function() {
             	// If an order was updated successfully, redirect the user to the order's page 
                 $location.path('orders/' + $scope.order._id);

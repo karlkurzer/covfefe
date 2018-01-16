@@ -1,10 +1,20 @@
 <!-- The list items view -->
-<section data-ng-controller="ItemsController" data-ng-init="find()">
+<div class="row" data-ng-controller="ItemsController" data-ng-init="find()">
 	<h1>Items</h1>
-	<table>
-		<tr data-ng-repeat="item in items" data-ng-click="addToOrder(item)">
-			<td>{{ item.name }}</td>
-			<td>{{ item.price }}</td>
-		</tr>
+	<table class="table table-condensed table-hover">
+		<thead>
+			<tr>
+				<!-- <th>Rank</th> -->
+				<th>Price</th>
+				<th>Name</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr style="cursor: pointer;" data-ng-repeat="item in items" data-ng-click="addToOrder(item);">
+				<td>{{ item.price | currency:'EUR ' }}</td>
+				<td>{{ item.name }}</td>
+			</tr>
+		</tbody>
 	</table>
-</section>
+</div>
+</div>

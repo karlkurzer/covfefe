@@ -2,17 +2,35 @@
 <html xmlns:ng="http://angularjs.org">
 
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
 	<!-- Use the 'title' property to render a page title  -->
 	<title>
 		<%= title %>
 	</title>
 	<link rel="shortcut icon" href="assets/images/icon/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/icon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/images/icon/favicon-32x32.png">
+	<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
 </head>
 
 <body>
+	<div class="container">
+		<div style="margin-top: 20px"></div>
+		<div class="row">
+			<a href="/#!/">
+				<img src="/../../assets/images/icon/favicon-32x32.png" alt="Home">
+			</a>
+			covfefe
+		</div>
+	</div>
 	<!-- Render AngularJS views  -->
-	<section ng-view></section>
+	<div class="container" ng-view></div>
+
+	<div class="container">
+			<div class="row text-center">
+				<p>designed by kurzer@fzi.de</p>
+			</div>
+	</div>
 
 	<!-- Render the user object -->
 	<script type="text/javascript">
@@ -49,14 +67,14 @@
 	<script type="text/javascript" src="/example/example.client.module.js"></script>
 	<script type="text/javascript" src="/example/controllers/example.client.controller.js"></script>
 	<script type="text/javascript" src="/example/config/example.client.routes.js"></script>
-	
+
 	<!-- Load the users module -->
 	<script type="text/javascript" src="/users/users.client.module.js"></script>
 	<script type="text/javascript" src="/users/services/authentication.client.service.js"></script>
 	<script type="text/javascript" src="/users/services/users.client.service.js"></script>
 	<script type="text/javascript" src="/users/controllers/users.client.controller.js"></script>
 	<script type="text/javascript" src="/users/config/users.client.routes.js"></script>
-	
+
 	<!-- Bootstrap AngularJS application -->
 	<script type="text/javascript" src="/application.js"></script>
 </body>

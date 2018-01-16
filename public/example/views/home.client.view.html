@@ -1,34 +1,68 @@
 <!-- The example view -->
-<section data-ng-include="'/../../example/views/header.client.view.html'"></section>
-<a href="/#!/orders"><h1>List of Orders</h1></a>
+<div class="row">
 
-<section data-ng-controller="ItemsController" data-ng-init="find()">
-    <h1>Items</h1>
-    <table>
-        <tr data-ng-repeat="item in items" data-ng-click="addToOrder(item)">
-            <td>{{ item.name }}</td>
-            <td>{{ item.price }}</td>
-        </tr>
-    </table>
-</section>
-<section data-ng-controller="UsersController" data-ng-init="find()">
-    <h1>Users</h1>
-    <table>
-        <tr data-ng-repeat="user in users" data-ng-click="orderBy(user)">
-            <td>{{ user.firstName }}</td>
-            <td>{{ user.lastName }}</td>
-        </tr>
-    </table>
-</section>
-<section data-ng-controller="OrdersController">
-    <h1>Current Order by {{ currentOrder.creator.fullName }} with a total of {{ currentOrder.total | currency:'EUR '}}</h1>
-    <!-- {{ currentOrder }} -->
-    <button data-ng-click="create()">Order</button>
-    <button data-ng-click="reset()">Reset</button>
-    <table>
-        <tr data-ng-repeat="item in currentOrder.items track by $index" data-ng-click="removeFromOrder($index)">
-            <td>{{ item.name }}</td>
-            <td>{{ item.price }}</td>
-        </tr>
-    </table>
-</section>
+    <div class="row">
+        <div class="col-md-4 text-center" data-ng-controller="UsersController">
+            <button class="btn btn-default" data-ng-click="addLetter('A');">A</button>
+            <button class="btn btn-default" data-ng-click="addLetter('B');">B</button>
+            <button class="btn btn-default" data-ng-click="addLetter('C');">C</button>
+            <button class="btn btn-default" data-ng-click="addLetter('D');">D</button>
+            <button class="btn btn-default" data-ng-click="addLetter('E');">E</button>
+            <br>
+            <br>
+            <button class="btn btn-default" data-ng-click="addLetter('F');">F</button>
+            <button class="btn btn-default" data-ng-click="addLetter('G');">G</button>
+            <button class="btn btn-default" data-ng-click="addLetter('H');">H</button>
+            <button class="btn btn-default" data-ng-click="addLetter('I');">I</button>
+            <button class="btn btn-default" data-ng-click="addLetter('J');">J</button>
+            <br>
+            <br>
+            <button class="btn btn-default" data-ng-click="addLetter('K');">K</button>
+            <button class="btn btn-default" data-ng-click="addLetter('L');">L</button>
+            <button class="btn btn-default" data-ng-click="addLetter('M');">M</button>
+            <button class="btn btn-default" data-ng-click="addLetter('N');">N</button>
+            <button class="btn btn-default" data-ng-click="addLetter('O');">O</button>
+            <button class="btn btn-default" data-ng-click="addLetter('P');">P</button>
+            <br>
+            <br>
+            <button class="btn btn-default" data-ng-click="addLetter('Q');">Q</button>
+            <button class="btn btn-default" data-ng-click="addLetter('R');">R</button>
+            <button class="btn btn-default" data-ng-click="addLetter('S');">S</button>
+            <button class="btn btn-default" data-ng-click="addLetter('T');">T</button>
+            <button class="btn btn-default" data-ng-click="addLetter('U');">U</button>
+            <br>
+            <br>
+            <button class="btn btn-default" data-ng-click="addLetter('V');">V</button>
+            <button class="btn btn-default" data-ng-click="addLetter('W');">W</button>
+            <button class="btn btn-default" data-ng-click="addLetter('X');">X</button>
+            <button class="btn btn-default" data-ng-click="addLetter('Y');">Y</button>
+            <button class="btn btn-default" data-ng-click="addLetter('Z');">Z</button>
+            <br>
+            <br>
+            <button class="btn btn-danger" data-ng-click="removeLetter();"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>    
+        </div>
+
+        <div class="col-md-4" data-ng-include="'/../../users/views/list-users.client.view.html'"></div>
+
+        <div class="col-md-4" data-ng-include="'/../../items/views/list-items.client.view.html'"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" data-ng-controller="OrdersController">
+            <div data-ng-if="currentOrder.creator._id" data-ng-include="'/../../orders/views/current-order.client.view.html'"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" data-ng-include="'/../../orders/views/last-orders.client.view.html'"></div>
+    </div>
+
+    <div class="row col-md-12">
+        <ul class="breadcrumb">
+            <li>
+                <a href="/signup">Signup</a>
+            </li>
+            <li>
+                <a href="/#!/orders">All Orders</a>
+            </li>
+        </ul>
+    </div>
+</div>

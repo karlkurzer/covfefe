@@ -1,10 +1,20 @@
 <!-- The list users view -->
-<section data-ng-controller="UsersController" data-ng-init="find()">
-	<h1>Users</h1>
-	<table>
-		<tr data-ng-repeat="user in users">
-			<td>{{ user.firstName }}</td>
-			<td>{{ user.lastName }}</td>
-		</tr>
+<div class="row" data-ng-controller="UsersController" data-ng-init="find()">
+	<h1>Users <mark data-ng-show="currentOrder.nameFilter.fullName">{{currentOrder.nameFilter.fullName}}</mark></h1>
+	<table class="table table-condensed table-hover" style="cursor: pointer;">
+		<thead>
+			<tr>
+				<!-- <th>Rank</th> -->
+				<th>Name</th>
+				<th>Balance</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr style="cursor: pointer;" data-ng-repeat="user in users | filter: currentOrder.nameFilter" data-ng-click="selectForOrder(user);">
+				<td>{{ user.fullName }}</td>
+				<td>{{ user.balance | currency:'EUR ' }}</td>
+			</tr>
+		</tbody>
 	</table>
-</section>
+</div>
+</div>

@@ -15,8 +15,8 @@ module.exports = function(app) {
 	// Set up the 'orders' parameterized routes
 	app.route('/api/orders/:orderId')
 	   .get(orders.read)
-	   .put(users.requiresLogin, orders.hasAuthorization, orders.update)
-	   .delete(users.requiresLogin, orders.hasAuthorization, orders.delete);
+	   .put(orders.update)
+	   .delete(orders.delete);
 
 	// Set up the 'orderId' parameter middleware   
 	app.param('orderId', orders.orderByID);

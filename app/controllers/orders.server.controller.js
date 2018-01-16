@@ -3,7 +3,8 @@
 
 // Load the module dependencies
 var mongoose = require('mongoose'),
-	Order = mongoose.model('Order');
+	Order = mongoose.model('Order'),
+	User = mongoose.model('User');
 
 // Create a new error handling controller method
 var getErrorMessage = function(err) {
@@ -31,6 +32,7 @@ exports.create = function(req, res) {
 				message: getErrorMessage(err)
 			});
 		} else {
+			//User.update()
 			// Send a JSON representation of the order 
 			res.json(order);
 		}
@@ -40,7 +42,7 @@ exports.create = function(req, res) {
 // Create a new controller method that retrieves a list of orders
 exports.list = function(req, res) {
 	// Use the model 'find' method to get a list of orders
-	Order.find().sort('-created')
+	Order.find().sort('-createdAt')
 	.populate('creator', 'firstName lastName fullName')
 	.populate('items', 'name price').exec(function(err, orders) {
 		if (err) {
@@ -66,8 +68,8 @@ exports.update = function(req, res) {
 	var order = req.order;
 
 	// Update the order fields
-	order.title = req.body.title;
-	order.content = req.body.content;
+	order.items = req.body.items;
+	order.total = req.body.total;
 
 	// Try saving the updated order
 	order.save(function(err) {
@@ -77,6 +79,7 @@ exports.update = function(req, res) {
 				message: getErrorMessage(err)
 			});
 		} else {
+			//User.update()
 			// Send a JSON representation of the order 
 			res.json(order);
 		}
@@ -105,7 +108,10 @@ exports.delete = function(req, res) {
 // Create a new controller middleware that retrieves a single existing order
 exports.orderByID = function(req, res, next, id) {
 	// Use the model 'findById' method to find a single order 
-	Order.findById(id).populate('creator', 'firstName lastName fullName').exec(function(err, order) {
+	Order.findById(id)
+	.populate('creator', 'firstName lastName fullName')
+	.populate('items', 'name price')
+	.exec(function(err, order) {
 		if (err) return next(err);
 		if (!order) return next(new Error('Failed to load order ' + id));
 

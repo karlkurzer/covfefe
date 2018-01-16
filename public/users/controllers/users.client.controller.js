@@ -7,9 +7,18 @@ angular.module('users').controller('UsersController', ['$scope', '$routeParams',
     	// Expose the Authentication service
         $scope.authentication = Authentication;
         $scope.currentOrder = CurrentOrder;
+        $scope.currentOrder.nameFilter = {fullName: ""};
 
-        $scope.orderBy = function(user) {
+        $scope.selectForOrder = function(user) {
             $scope.currentOrder.creator = user;
+        }
+
+        $scope.addLetter = function(letter) {
+            $scope.currentOrder.nameFilter.fullName += letter;
+        }
+
+        $scope.removeLetter = function() {
+            $scope.currentOrder.nameFilter.fullName = $scope.currentOrder.nameFilter.fullName.slice(0, -1);
         }
 
         // Create a new controller method for creating new users

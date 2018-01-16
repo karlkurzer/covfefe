@@ -1,0 +1,30 @@
+<!-- The list orders view -->
+<div class="row">
+    <h1>Order</h1>
+    <h3>by {{ currentOrder.creator.fullName }}</h3>
+    <!-- Show the editing buttons to the order creator -->
+    <table class="table table-condensed table-hover">
+        <thead>
+            <tr>
+                <th>Price</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-ng-repeat="item in currentOrder.items track by $index" data-ng-click="removeFromOrder($index)">
+                <td>{{ item.price | currency:'EUR ' }}</td>
+                <td>{{ item.name }}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr class="success">
+                <td>Total</td>
+                <td> {{ order.total | currency:'EUR '}}</td>
+            </tr>
+        </tfoot>
+    </table>
+    <div>
+        <button class="btn btn-default" data-ng-click="create();">Order</button>
+        <button class="btn btn-default" data-ng-click="reset();">Reset</button>
+    </div>
+</div>

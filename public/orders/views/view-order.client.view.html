@@ -1,16 +1,31 @@
 <!-- The order view -->
-<section data-ng-include="'/../../example/views/header.client.view.html'"></section>
-<section data-ng-controller="OrdersController" data-ng-init="findOne()">
-	<h1>Order by {{ order.creator.fullName }} with a total of {{ order.total | currency:'EUR '}}</h1>
+<div class="row" data-ng-controller="OrdersController" data-ng-init="findOne()">
+	<h1>Order</h1>
+	<h3>by {{ order.creator.fullName }} @ {{ order.createdAt | date: 'short' }}</h3>
 	<!-- Show the editing buttons to the order creator -->
-	<table>
-		<tr data-ng-repeat="item in order.items track by $index">
-			<td>{{ item.name }}</td>
-			<td>{{ item.price }}</td>
-		</tr>
+	<table class="table table-condensed table-hover">
+		<thead>
+			<tr>
+				<th>Price</th>
+				<th>Name</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-ng-repeat="item in order.items">
+				<td>{{ item.price | currency:'EUR ' }}</td>
+				<td>{{ item.name }}</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr class="success">
+				<td>Total</td>
+				<td> {{ order.total | currency:'EUR '}}</td>
+			</tr>
+		</tfoot>
 	</table>
 	<div>
-		<a href="/#!/orders/{{order._id}}/edit">edit</a>
-		<a href="/#!/" data-ng-click="delete();">delete</a>
+		<button class="btn btn-default" data-ng-click="editOne(order);">edit</button>
+		<button class="btn btn-default" data-ng-click="delete();">delete</button>
+		<a href="#!/"><button class="btn btn-default">back</button></a>
 	</div>
-</section>
+</div>
