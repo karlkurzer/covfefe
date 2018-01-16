@@ -22,8 +22,6 @@ exports.create = function(req, res) {
 	// Create a new order object
 	var order = new Order(req.body);
 
-	// Set the order's 'creator' property
-
 	// Try saving the order
 	order.save(function(err) {
 		if (err) {
@@ -32,9 +30,11 @@ exports.create = function(req, res) {
 				message: getErrorMessage(err)
 			});
 		} else {
-			//User.update()
-			// Send a JSON representation of the order 
-			res.json(order);
+			req.user.balance -= order.total;
+			User.findByIdAndUpdate(req.user._id, { balance: req.user.balance }, function() {
+				// Send a JSON representation of the order 
+				res.json(order);
+			});
 		}
 	});
 };
@@ -79,9 +79,11 @@ exports.update = function(req, res) {
 				message: getErrorMessage(err)
 			});
 		} else {
-			//User.update()
-			// Send a JSON representation of the order 
-			res.json(order);
+			req.user.balance += order.total;
+			User.findByIdAndUpdate(req.user._id, { balance: req.user.balance }, function() {
+				// Send a JSON representation of the order 
+				res.json(order);
+			});
 		}
 	});
 };
@@ -99,8 +101,11 @@ exports.delete = function(req, res) {
 				message: getErrorMessage(err)
 			});
 		} else {
-			// Send a JSON representation of the order 
-			res.json(order);
+			req.user.balance += order.total;
+			User.findByIdAndUpdate(req.user._id, { balance: req.user.balance }, function() {
+				// Send a JSON representation of the order 
+				res.json(order);
+			});
 		}
 	});
 };
@@ -117,6 +122,28 @@ exports.orderByID = function(req, res, next, id) {
 
 		// If an order is found use the 'request' object to pass it to the next middleware
 		req.order = order;
+
+		// Call the next middleware
+		next();
+	});
+};
+
+// Create a new controller middleware that retrieves a single existing user
+exports.userByID = function(req, res, next) {		
+	var id = {};
+	if (req.body.creator) {
+		id = req.body.creator;
+	}
+	else {
+		id = req.order.creator._id;
+	}
+	// Use the model 'findById' method to find a single user 
+	User.findById(id).exec(function(err, user) {
+		if (err) return next(err);
+		if (!user) return next(new Error('Failed to load user ' + id));
+
+		// If an user is found use the 'request' object to pass it to the next middleware
+		req.user = user;
 
 		// Call the next middleware
 		next();

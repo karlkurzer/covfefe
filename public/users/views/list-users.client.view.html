@@ -1,18 +1,30 @@
 <!-- The list users view -->
 <div class="row" data-ng-controller="UsersController" data-ng-init="find()">
-	<h1>Users <mark data-ng-show="currentOrder.nameFilter.fullName">{{currentOrder.nameFilter.fullName}}</mark></h1>
+	<h1>Users
+		<mark data-ng-show="currentOrder.nameFilter.fullName">{{currentOrder.nameFilter.fullName}}</mark>
+	</h1>
 	<table class="table table-condensed table-hover" style="cursor: pointer;">
 		<thead>
 			<tr>
 				<!-- <th>Rank</th> -->
 				<th>Name</th>
 				<th>Balance</th>
+				<th data-ng-if="authentication.user._id=='5a5dd1027d1c426c2d7c6248'">Update</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr style="cursor: pointer;" data-ng-repeat="user in users | filter: currentOrder.nameFilter" data-ng-click="selectForOrder(user);">
+			<tr style="cursor: pointer;" data-ng-if="authentication.user._id!='5a5dd1027d1c426c2d7c6248'" data-ng-repeat="user in users | filter: currentOrder.nameFilter" data-ng-click="selectForOrder(user);">
 				<td>{{ user.fullName }}</td>
 				<td>{{ user.balance | currency:'EUR ' }}</td>
+			</tr>
+		</tbody>
+		<tbody>
+			<tr style="cursor: pointer;" data-ng-if="authentication.user._id=='5a5dd1027d1c426c2d7c6248'" data-ng-repeat="user in users | filter: currentOrder.nameFilter" data-ng-click="viewOne(user);">
+				<td>{{ user.fullName }}</td>
+				<td>{{ user.balance | currency:'EUR ' }}</td>
+				<td data-ng-if="authentication.user._id='5a5dd1027d1c426c2d7c6248'">
+					<span data-ng-click="removeFromOrder($index);" class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+				</td>
 			</tr>
 		</tbody>
 	</table>

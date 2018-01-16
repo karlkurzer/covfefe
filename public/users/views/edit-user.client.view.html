@@ -1,27 +1,24 @@
 <!-- The edit user view -->
-<section data-ng-controller="UsersController" data-ng-init="findOne()">
+<div class="row col-md-12" data-ng-controller="UsersController" data-ng-init="findOne()">
 	<h1>Edit User</h1>
-	<!-- The edited user form -->
-	<form data-ng-submit="update()" novalidate>
-		<div>
-			<label for="title">Title</label>
-			<div>
-				<input type="text" data-ng-model="user.title" id="title" placeholder="Title" required>
-			</div>
-		</div>
-		<div>
-			<label for="content">Content</label>
-			<div>
-				<textarea data-ng-model="user.content" id="content" cols="30" rows="10" placeholder="Content"></textarea>
-			</div>
-		</div>
-		<div>
-			<input type="submit" value="Update">
-		</div>
-		<!-- The error message element -->
-		<div data-ng-show="error">
-			<strong data-ng-bind="error"></strong>
-		</div>
-	</form>
+	<!-- Show the editing buttons to the order creator -->
+	<div class="form-group row col-md-4">
+		<label for="firstName">first name</label>
+		<input data-ng-model="user.firstName" type="text" class="form-control" id="firstName">
+		<label for="lastName">last name</label>
+		<input data-ng-model="user.lastName" type="text" class="form-control" id="lastName">
+		<label for="userName">user name</label>
+		<input data-ng-model="user.username" type="text" class="form-control" id="userName">
+		<label for="userEmail">user email</label>
+		<input data-ng-model="user.email" type="text" class="form-control" id="userEmail">
+		<label for="balance">balance</label>
+		<input data-ng-model="user.balance" type="text" class="form-control" id="balance">
 	</div>
-</section>
+	<div class="row col-md-12">
+		<button class="btn btn-default" data-ng-click="update();">update</button>
+		<button class="btn btn-default" data-ng-click="delete();">delete</button>
+		<a href="#!/">
+			<button class="btn btn-default">back</button>
+		</a>
+	</div>
+</div>

@@ -49,6 +49,95 @@ exports.list = function(req, res) {
 	});
 };
 
+// Create a new controller method that returns an existing user
+exports.read = function(req, res) {
+	res.json(req.user);
+};
+
+// Create a new controller method that updates an existing user
+exports.update = function(req, res) {
+	// Get the user from the 'request' object
+	var user = req.user;
+
+	// Update the user fields
+	user.firstName = req.body.firstName;
+	user.lastName = req.body.lastName;
+	user.username = req.body.username;
+	user.email = req.body.email;
+	user.balance = req.body.balance;
+
+	// Try saving the updated user
+	User.update({ _id: user._id }, user, function(err) {
+		if (err) {
+			// If an error occurs send the error message
+			return res.status(400).send({
+				message: getErrorMessage(err)
+			});
+		} else {
+			// Send a JSON representation of the user 
+			res.json(user);
+		}
+	});
+};
+
+// Create a new controller method that delete an existing user
+exports.delete = function(req, res) {
+	// Get the user from the 'request' object
+	var user = req.user;
+
+	// Use the model 'remove' method to delete the user
+	user.remove(function(err) {
+		if (err) {
+			// If an error occurs send the error message
+			return res.status(400).send({
+				message: getErrorMessage(err)
+			});
+		} else {
+			// Send a JSON representation of the user 
+			res.json(user);
+		}
+	});
+};
+
+// Create a new controller middleware that retrieves a single existing user
+exports.userByID = function(req, res, next, id) {
+	// Use the model 'findById' method to find a single user 
+	User.findById(id).exec(function(err, user) {
+		if (err) return next(err);
+		if (!user) return next(new Error('Failed to load user ' + id));
+
+		// If an user is found use the 'request' object to pass it to the next middleware
+		req.user = user;
+
+		// Call the next middleware
+		next();
+	});
+};
+
+// Create a new controller method that updates an existing user
+exports.updateBalance = function(req, res) {
+	// Get the user from the 'request' object
+	var user = req.user;
+
+	// Update the user fields
+	user.firstName = req.body.firstName;
+	user.balance = req.body.balance;
+
+	// Try saving the updated user
+	User.update({ _id: user._id }, { balance: user.balance }, function(err) {
+		if (err) {
+			// If an error occurs send the error message
+			return res.status(400).send({
+				message: getErrorMessage(err)
+			});
+		} else {
+			// Send a JSON representation of the user 
+			res.json(user);
+		}
+	});
+};
+
+
 // Create a new controller method that renders the signin page
 exports.renderSignin = function(req, res, next) {
 	// If user is not connected render the signin page, otherwise redirect the user back to the main application page
@@ -175,6 +264,19 @@ exports.signout = function(req, res) {
 exports.requiresLogin = function(req, res, next) {
 	// If a user is not authenticated send the appropriate error message
 	if (!req.isAuthenticated()) {
+		return res.status(401).send({
+			message: 'User is not logged in'
+		});
+	}
+
+	// Call the next middleware
+	next();
+};
+
+// Create a new controller middleware that is used to authorize authenticated operations 
+exports.requiresTrump = function(req, res, next) {
+	// If a user is not authenticated send the appropriate error message
+	if (req._passport.session.user !== '5a5dd1027d1c426c2d7c6248') {
 		return res.status(401).send({
 			message: 'User is not logged in'
 		});

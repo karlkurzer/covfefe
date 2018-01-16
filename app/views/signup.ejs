@@ -1,45 +1,56 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<!-- Use the 'title' property to render a page title  -->
-	<title><%= title %></title>
+	<title>
+		<%= title %>
+	</title>
+	<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
 </head>
+
 <body>
-	<div>
+	<div class="container">
 		<a href="/#!/">
 			<img src="/../../assets/images/icon/favicon-32x32.png" alt="Home">
 		</a>
-	</div>
-  	<!-- Display flash messages  -->
-	<% for(var i in messages) { %>
-	   <div class="flash"><%= messages[i] %></div>
-	<% } %>
+		covfefe
+		<!-- Display flash messages  -->
+		<% for(var i in messages) { %>
+			<div class="flash">
+				<%= messages[i] %>
+			</div>
+			<% } %>
 
-	<!-- Render the signup form  -->
-	<form action="/signup" method="post">
-		<div>
-			<label>First Name:</label>
-			<input type="text" name="firstName" />
-		</div>
-		<div>
-			<label>Last Name:</label>
-			<input type="text" name="lastName" />
-		</div>
-		<div>
-			<label>Email:</label>
-			<input type="text" name="email" />
-		</div>
-		<div>
-			<label>Username:</label>
-			<input type="text" name="username" />
-		</div>
-		<div>	
-			<label>Password:</label>
-			<input type="password" name="password" />
-		</div>
-		<div>
-			<input type="submit" value="Sign up" />
-		</div>
-	</form>
+				<div class="form-group" style="margin-top: 20px;">
+					<!-- Render the signup form  -->
+					<form class="form-group col-md-4" action="/signup" method="post">
+						<div>
+							<label>First Name:</label>
+							<input class="form-control" type="text" name="firstName" />
+						</div>
+						<div>
+							<label>Last Name:</label>
+							<input class="form-control" type="text" name="lastName" />
+						</div>
+						<div>
+							<label>Email:</label>
+							<input class="form-control" type="text" name="email" />
+						</div>
+						<div>
+							<label>Username:</label>
+							<input class="form-control" type="text" name="username" />
+						</div>
+						<div>
+							<label>Password:</label>
+							<input class="form-control" type="password" name="password" />
+						</div>
+						<div>
+							<input class="btn btn-default" type="submit" value="Sign up" />
+						</div>
+					</form>
+				</div>
+	</div>
 </body>
+
 </html>

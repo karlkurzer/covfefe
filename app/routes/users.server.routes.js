@@ -9,7 +9,16 @@ var users = require('../../app/controllers/users.server.controller'),
 module.exports = function(app) {
 
 	app.route('/api/users')
-		.get(users.list)
+		.get(users.list);
+
+	 // Set up the 'user' parameterized routes
+	 app.route('/api/users/:userId')
+		.get(users.read)
+		.put(users.requiresTrump, users.update)
+		.delete(users.requiresTrump, users.delete);
+ 
+	 // Set up the 'userId' parameter middleware   
+	 app.param('userId', users.userByID);
 
 	// Set up the 'signup' routes 
 	app.route('/signup')

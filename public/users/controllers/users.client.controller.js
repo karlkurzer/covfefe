@@ -9,6 +9,14 @@ angular.module('users').controller('UsersController', ['$scope', '$routeParams',
         $scope.currentOrder = CurrentOrder;
         $scope.currentOrder.nameFilter = {fullName: ""};
 
+        $scope.viewOne = function (user) {
+            $location.path('users/' + user._id);
+        };
+
+        $scope.editOne = function (user) {
+            $location.path('users/' + user._id + '/edit');
+        };
+
         $scope.selectForOrder = function(user) {
             $scope.currentOrder.creator = user;
         }
@@ -56,8 +64,8 @@ angular.module('users').controller('UsersController', ['$scope', '$routeParams',
         // Create a new controller method for updating a single user
         $scope.update = function() {
         	// Use the user '$update' method to send an appropriate PUT request
-            $scope.user.$update(function() {
-            	// If an user was updated successfully, redirect the user to the user's page 
+            $scope.user.$update(function(user) {
+                // If an user was updated successfully, redirect the user to the user's page
                 $location.path('users/' + $scope.user._id);
             }, function(errorResponse) {
             	// Otherwise, present the user with the error message

@@ -1,16 +1,23 @@
 <!-- The user view -->
-<section data-ng-controller="UsersController" data-ng-init="findOne()">
-	<h1 data-ng-bind="user.title"></h1>
-	<!-- Show the editing buttons to the user creator -->
-	<div data-ng-show="authentication.user._id == user.creator._id">
-		<a href="/#!/users/{{user._id}}/edit">edit</a>
-		<a href="/#!/" data-ng-click="delete();">delete</a>
+<div class="row col-md-12" data-ng-controller="UsersController" data-ng-init="findOne()">
+	<h1>User</h1>
+	<!-- Show the editing buttons to the order creator -->
+	<div class="form-group row col-md-4">
+		<label for="firstName">first name</label>
+		<p data-ng-bind="user.firstName" type="text" class="form-control" id="firstName"></p>
+		<label for="lastName">last name</label>
+		<p data-ng-bind="user.lastName" type="text" class="form-control" id="lastName"></p>
+		<label for="userName">user name</label>
+		<p data-ng-bind="user.username" type="text" class="form-control" id="userName"></p>
+		<label for="userEmail">user email</label>
+		<p data-ng-bind="user.email" type="text" class="form-control" id="userEmail"></p>
+		<label for="balance">balance</label>
+		<p data-ng-bind="user.balance" type="text" class="form-control" id="balance"></p>
 	</div>
-	<small>
-		<em>Posted on</em>
-		<em data-ng-bind="user.created | date:'mediumDate'"></em>
-		<em>by</em>
-		<em data-ng-bind="user.creator.fullName"></em>
-	</small>
-	<p data-ng-bind="user.content"></p>
-</section>
+	<div class="row col-md-12">
+		<button class="btn btn-default" data-ng-click="editOne(user);">edit</button>
+		<a href="#!/">
+			<button class="btn btn-default">back</button>
+		</a>
+	</div>
+</div>

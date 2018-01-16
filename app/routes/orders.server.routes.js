@@ -10,13 +10,13 @@ module.exports = function(app) {
 	// Set up the 'orders' base routes 
 	app.route('/api/orders')
 	   .get(orders.list)
-	   .post(orders.create);
+	   .post(orders.userByID, orders.create);
 	
 	// Set up the 'orders' parameterized routes
 	app.route('/api/orders/:orderId')
 	   .get(orders.read)
-	   .put(orders.update)
-	   .delete(orders.delete);
+	   .put(orders.userByID, orders.update)
+	   .delete(orders.userByID, orders.delete);
 
 	// Set up the 'orderId' parameter middleware   
 	app.param('orderId', orders.orderByID);
