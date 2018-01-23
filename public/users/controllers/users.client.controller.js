@@ -2,12 +2,13 @@
 'use strict';
 
 // Create the 'users' controller
-angular.module('users').controller('UsersController', ['$scope', '$routeParams', '$location', 'Authentication', 'Users', 'CurrentOrder',
-    function($scope, $routeParams, $location, Authentication, Users, CurrentOrder) {
+angular.module('users').controller('UsersController', ['$scope', '$routeParams', '$location', 'Authentication', 'Users', 'CurrentOrder', 'UserSelection',
+    function($scope, $routeParams, $location, Authentication, Users, CurrentOrder, UserSelection) {
     	// Expose the Authentication service
         $scope.authentication = Authentication;
         $scope.currentOrder = CurrentOrder;
         $scope.currentOrder.nameFilter = {fullName: ""};
+        $scope.userSelection = UserSelection;
 
         $scope.viewOne = function (user) {
             $location.path('users/' + user._id);
@@ -17,7 +18,8 @@ angular.module('users').controller('UsersController', ['$scope', '$routeParams',
             $location.path('users/' + user._id + '/edit');
         };
 
-        $scope.selectForOrder = function(user) {
+        $scope.selectForOrder = function(user, index) {
+            $scope.userSelection.userIndex = index;
             $scope.currentOrder.creator = user;
         }
 

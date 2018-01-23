@@ -2,16 +2,16 @@
 'use strict';
 
 // Create the 'orders' controller
-angular.module('orders').controller('OrdersController', ['$scope', '$routeParams', '$location', 'Authentication', 'Orders', 'CurrentOrder',
-    function($scope, $routeParams, $location, Authentication, Orders, CurrentOrder) {
+angular.module('orders').controller('OrdersController', ['$scope', '$routeParams', '$location', 'Authentication', 'Orders', 'CurrentOrder','UserSelection',
+    function($scope, $routeParams, $location, Authentication, Orders, CurrentOrder, UserSelection) {
     	// Expose the Authentication service
         $scope.authentication = Authentication;
         $scope.currentOrder = CurrentOrder;
+        $scope.userSelection = UserSelection;
 
         $scope.reset = function(){
-            $scope.currentOrder.items = [];
-            $scope.currentOrder.creator = {};
-            $scope.currentOrder.total = 0;
+            $scope.currentOrder.reset();
+            $scope.userSelection.reset();
         };
 
         $scope.viewOne = function (order) {
@@ -27,8 +27,14 @@ angular.module('orders').controller('OrdersController', ['$scope', '$routeParams
             $scope.order.total -= item[0].price;
         };
 
+        $scope.shame = function () {
+            var audio = new Audio('assets/audio/shame.mp3');
+            audio.play();
+        };
+
         // Create a new controller method for creating new orders
         $scope.create = function() {
+            if ($scope.currentOrder.creator.balance < $scope.currentOrder.total) $scope.shame();
         	// Use the form fields to create a new order $resource object
             var order = new Orders({
                 items: $scope.currentOrder.items,

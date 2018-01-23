@@ -30,8 +30,10 @@ angular.module('items').controller('ItemsController', ['$scope', '$routeParams',
         };
 
         $scope.addToOrder = function(item) {
-            $scope.currentOrder.items.push(item);
-            $scope.currentOrder.total += item.price;
+            if ($scope.currentOrder.creator.hasOwnProperty('_id')) {
+                $scope.currentOrder.items.push(item);
+                $scope.currentOrder.total += item.price;
+            }
         };
 
         // Create a new controller method for creating new items

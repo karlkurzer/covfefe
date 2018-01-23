@@ -17,14 +17,18 @@
             </tr>
         </tbody>
         <tfoot>
-            <tr class="success">
+            <tr data-ng-show="currentOrder.creator.balance > currentOrder.total" class="success">
                 <td>Total</td>
-                <td> {{ order.total | currency:'EUR '}}</td>
+                <td> {{ currentOrder.total | currency:'EUR '}}</td>
+            </tr>
+            <tr data-ng-hide="currentOrder.creator.balance > currentOrder.total" class="danger">
+                <td>Total</td>
+                <td> {{ currentOrder.total | currency:'EUR '}}</td>
             </tr>
         </tfoot>
     </table>
     <div>
-        <button class="btn btn-default" data-ng-click="create();">Order</button>
-        <button class="btn btn-default" data-ng-click="reset();">Reset</button>
+        <button data-ng-disabled="!currentOrder.items.length" class="btn btn-success" data-ng-click="create();">Order</button>
+        <button class="btn btn-info" data-ng-click="reset();">Reset</button>
     </div>
 </div>
