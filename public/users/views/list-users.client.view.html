@@ -17,7 +17,8 @@
 			data-ng-if="!authentication.user.admin"
 			data-ng-repeat="user in users
 			| filter: currentOrder.nameFilter
-			| orderBy: 'balance'"
+			| orderBy: 'balance'
+			| limitTo: 10"
 			data-ng-class="{'info': userSelection.userIndex == $index}"
 			data-ng-click="selectForOrder(user,$index);">
 				<td>{{ user.fullName }}</td>
