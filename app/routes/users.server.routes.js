@@ -14,8 +14,8 @@ module.exports = function(app) {
 	 // Set up the 'user' parameterized routes
 	 app.route('/api/users/:userId')
 		.get(users.read)
-		.put(users.requiresTrump, users.update)
-		.delete(users.requiresTrump, users.delete);
+		.put(users.requiresAdmin, users.update)
+		.delete(users.requiresAdmin, users.delete);
  
 	 // Set up the 'userId' parameter middleware   
 	 app.param('userId', users.userByID);

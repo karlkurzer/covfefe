@@ -16,7 +16,7 @@ var getErrorMessage = function(err) {
 			// If a unique index error occurs set the message error
 			case 11000:
 			case 11001:
-				message = 'Username already exists';
+				message = 'Email already exists';
 				break;
 			// If a general error occurs set the message error
 			default:
@@ -62,7 +62,6 @@ exports.update = function(req, res) {
 	// Update the user fields
 	user.firstName = req.body.firstName;
 	user.lastName = req.body.lastName;
-	user.username = req.body.username;
 	user.email = req.body.email;
 	user.balance = req.body.balance;
 
@@ -183,7 +182,6 @@ exports.signup = function(req, res, next) {
 
 		// Try saving the new user document
 		user.save(function(err) {
-			console.log('saving user' + user);
 			// If an error occurs, use flash messages to report the error
 			if (err) {
 				// Use the error handling method to get the error message
@@ -206,9 +204,7 @@ exports.signup = function(req, res, next) {
 				return res.redirect('/');
 			});
 		});
-		console.log('done saving');
 	} else {
-		console.log('req.user');
 		return res.redirect('/');
 	}
 };
@@ -274,9 +270,9 @@ exports.requiresLogin = function(req, res, next) {
 };
 
 // Create a new controller middleware that is used to authorize authenticated operations 
-exports.requiresTrump = function(req, res, next) {
+exports.requiresAdmin = function(req, res, next) {
 	// If a user is not authenticated send the appropriate error message
-	if (req._passport.session.user !== '5a5dd1027d1c426c2d7c6248') {
+	if (!req._passport.session.user.admin) {
 		return res.status(401).send({
 			message: 'User is not logged in'
 		});

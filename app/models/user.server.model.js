@@ -17,15 +17,11 @@ var UserSchema = new Schema({
 	email: {
 		type: String,
 		// Validate the email format
-		match: [/.+\@.+\..+/, "Please fill a valid email address"]
-	},
-	username: {
-		type: String,
-		// Set a unique 'username' index
+		match: [/.+\@.+\..+/, "Please fill a valid email address"],
 		unique: true,
-		// Validate 'username' value existance
-		required: 'Username is required',
-		// Trim the 'username' field
+		// Validate 'email' value existance
+		required: 'Email is required',
+		// Trim the 'email' field
 		trim: true
 	},
 	password: {
@@ -40,6 +36,10 @@ var UserSchema = new Schema({
 	},
 	salt: {
 		type: String
+	},
+	admin: {
+		type: Boolean,
+		default: false
 	},
 	provider: {
 		type: String,
@@ -82,23 +82,23 @@ UserSchema.methods.authenticate = function(password) {
 	return this.password === this.hashPassword(password);
 };
 
-// Find possible not used username
-UserSchema.statics.findUniqueUsername = function(username, suffix, callback) {
+// Find possible not used email
+UserSchema.statics.findUniqueEmail = function(email, suffix, callback) {
 	var _this = this;
-	// Add a 'username' suffix
-	var possibleUsername = username + (suffix || '');
+	// Add a 'email' suffix
+	var possibleEmail = email + (suffix || '');
 
-	// Use the 'User' model 'findOne' method to find an available unique username
+	// Use the 'User' model 'findOne' method to find an available unique email
 	_this.findOne({
-		username: possibleUsername
+		email: possibleEmail
 	}, function(err, user) {
-		// If an error occurs call the callback with a null value, otherwise find find an available unique username
+		// If an error occurs call the callback with a null value, otherwise find find an available unique email
 		if (!err) {
-			// If an available unique username was found call the callback method, otherwise call the 'findUniqueUsername' method again with a new suffix
+			// If an available unique email was found call the callback method, otherwise call the 'findUniqueEmail' method again with a new suffix
 			if (!user) {
-				callback(possibleUsername);
+				callback(possibleEmail);
 			} else {
-				return _this.findUniqueUsername(username, (suffix || 0) + 1, callback);
+				return _this.findUniqueEmail(email, (suffix || 0) + 1, callback);
 			}
 		} else {
 			callback(null);
