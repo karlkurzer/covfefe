@@ -1,20 +1,18 @@
 <!-- The list orders view -->
-<div class="row" data-ng-controller="OrdersController" data-ng-init="find()">
+<div class="row" data-ng-controller="OrdersController" data-ng-init="find({creator: currentOrder.creator._id})">
 	<h1>Last Orders</h1>
 	<table class="table table-condensed table-hover">
 		<thead>
 			<tr>
-				<th>#</th>
 				<th>Date</th>
-				<th>Name</th>
 				<th>Total</th>
 			</tr>
 		</thead>
 		<tbody>
-				<tr style="cursor: pointer;" data-ng-repeat="order in orders | limitTo: 5" data-ng-click="viewOne(order)">
-				<td>{{$index}}</td>
+				<tr style="cursor: pointer;"
+				data-ng-repeat="order in orders
+				| limitTo: 5" data-ng-click="viewOne(order)">
 				<td>{{order.createdAt | date: 'short'}}</td>
-				<td>{{order.creator.fullName}}</td>
 				<td>{{order.total | currency:'EUR '}}</td>
 			</tr></a>
 		</tbody>

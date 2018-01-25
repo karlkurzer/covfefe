@@ -41,8 +41,9 @@ exports.create = function(req, res) {
 
 // Create a new controller method that retrieves a list of orders
 exports.list = function(req, res) {
+	var query = req.query;
 	// Use the model 'find' method to get a list of orders
-	Order.find().sort('-createdAt')
+	Order.find(query).sort('-createdAt')
 	.populate('creator', 'firstName lastName fullName')
 	.populate('items', 'name price').exec(function(err, orders) {
 		if (err) {

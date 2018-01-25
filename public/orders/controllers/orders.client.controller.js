@@ -8,6 +8,7 @@ angular.module('orders').controller('OrdersController', ['$scope', '$routeParams
         $scope.authentication = Authentication;
         $scope.currentOrder = CurrentOrder;
         $scope.userSelection = UserSelection;
+        $scope.aggregatedItems = [];
 
         $scope.reset = function(){
             $scope.currentOrder.reset();
@@ -54,9 +55,10 @@ angular.module('orders').controller('OrdersController', ['$scope', '$routeParams
         };
 
         // Create a new controller method for retrieving a list of orders
-        $scope.find = function() {
+        $scope.find = function(query) {
+            query = query ? query : {};
         	// Use the order 'query' method to send an appropriate GET request
-            $scope.orders = Orders.query();
+            $scope.orders = Orders.query(query);
         };
 
         // Create a new controller method for retrieving a single order

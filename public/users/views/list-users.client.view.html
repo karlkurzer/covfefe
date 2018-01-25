@@ -18,7 +18,7 @@
 			data-ng-repeat="user in users
 			| filter: currentOrder.nameFilter
 			| orderBy: 'balance'
-			| limitTo: 10"
+			| limitTo: 9"
 			data-ng-class="{'info': userSelection.userIndex == $index}"
 			data-ng-click="selectForOrder(user,$index);">
 				<td>{{ user.fullName }}</td>
@@ -31,7 +31,7 @@
 			data-ng-repeat="user in users
 			| filter: currentOrder.nameFilter
 			| orderBy: 'balance'
-			| limitTo: 10"
+			| limitTo: 9"
 			data-ng-click="viewOne(user);">
 				<td>{{ user.fullName }}</td>
 				<td>{{ user.balance | currency:'EUR ' }}</td>
