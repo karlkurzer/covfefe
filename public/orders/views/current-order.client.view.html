@@ -10,7 +10,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr data-ng-repeat="item in currentOrder.items track by $index" data-ng-click="removeFromOrder($index)">
+            <tr data-ng-repeat="item in currentOrder.items track by $index" data-ng-click="removeFromCurrentOrder($index)">
                 <td>{{ item.price | currency:'EUR ' }}</td>
                 <td>{{ item.name }}</td>
             </tr>
