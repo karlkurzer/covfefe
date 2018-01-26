@@ -2,13 +2,14 @@
 'use strict';
 
 // Create the 'users' controller
-angular.module('users').controller('UsersController', ['$scope', '$routeParams', '$location', 'Authentication', 'Users', 'CurrentOrder', 'UserSelection',
-    function($scope, $routeParams, $location, Authentication, Users, CurrentOrder, UserSelection) {
+angular.module('users').controller('UsersController', ['$scope', '$routeParams', '$location', 'Authentication', 'Users', 'CurrentOrder', 'UserSelection', 'UserStats',
+    function ($scope, $routeParams, $location, Authentication, Users, CurrentOrder, UserSelection, UserStats) {
     	// Expose the Authentication service
         $scope.authentication = Authentication;
         $scope.currentOrder = CurrentOrder;
         $scope.currentOrder.nameFilter = {fullName: ""};
         $scope.userSelection = UserSelection;
+        $scope.userStats = UserStats;
 
         $scope.viewOne = function (user) {
             $location.path('users/' + user._id);
@@ -51,8 +52,17 @@ angular.module('users').controller('UsersController', ['$scope', '$routeParams',
 
         // Create a new controller method for retrieving a list of users
         $scope.find = function() {
+            var query = {};
+            UserStats.reset();
             // Use the user 'query' method to send an appropriate GET request
-            $scope.users = Users.query();
+            $scope.users = Users.query(query, function (users) {
+                for (var i = 0; i < users.length-1; i++) {
+                    $scope.userStats.totalBalance += users[i].balance;
+                }
+            }, function (errorResponse) {
+                // Otherwise, present the user with the error message
+                $scope.error = errorResponse.data.message;
+            });
         };
 
         // Create a new controller method for retrieving a single user

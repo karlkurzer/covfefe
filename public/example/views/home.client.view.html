@@ -1,7 +1,7 @@
 <!-- The example view -->
 <div class="row" data-ng-controller="OrdersController">
     <h1 data-ng-if="currentOrder.creator._id">
-        {{ currentOrder.creator.fullName }}
+        {{ currentOrder.creator.fullName }} {{currentOrder.creator.balance | currency: 'EUR '}}
     </h1>
 
     <div class="col-md-4 col-s-6 col-xs-12" data-ng-if="!currentOrder.creator._id" data-ng-include="'/../../example/views/name-filter.client.view.html'"></div>

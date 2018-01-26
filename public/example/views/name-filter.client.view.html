@@ -1,5 +1,5 @@
 <div class="row" data-ng-controller="UsersController">
-    <h1>Name Filter
+    <h1>Balance {{ userStats.totalBalance | currency: 'EUR ' }}
     </h1>
     <button class="btn btn-default btn-nameFilter" data-ng-click="addLetter('A');">A</button>
     <button class="btn btn-default btn-nameFilter" data-ng-click="addLetter('B');">B</button>
