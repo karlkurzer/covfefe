@@ -1,5 +1,14 @@
 #!/bin/sh
-DIR=`date +%y-%m-%d`
-DEST=~/data/$DIR
-mkdir -p $DEST
-mongodump -h localhost -d covfefe -u trump -p lo6qaiaekpxpwmfqlsqbvbujpqccunrdcdmwqpe -o $DEST
+### CONDUCT BACKUP
+baseDir="data"
+projectDir="covfefe"
+timeStamp=$(date +%y-%m-%d_%H-%M)
+
+destination="/${baseDir}/${projectDir}/${timeStamp}"
+
+mkdir -p $destination
+mongodump -h localhost -d covfefe -u trump -p lo6qaiaekpxpwmfqlsqbvbujpqccunrdcdmwqpe -o $destination
+
+### DELETE OLD BACKUPS
+find /$baseDir/$projectDir -type d -mtime +7 -exec rm -rf {} \;
+
