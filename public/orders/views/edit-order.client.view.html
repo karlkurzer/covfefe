@@ -13,7 +13,7 @@
 		</thead>
 		<tbody>
 			<tr data-ng-repeat="item in order.items">
-				<td>{{ item.price | currency:'EUR ' }}</td>
+				<td>{{ item.price | currency }}</td>
 				<td>{{ item.name }}</td>
 				<td style="cursor: pointer;">
 					<span data-ng-click="removeFromOrder($index);" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -23,14 +23,14 @@
 		<tfoot>
 			<tr class="success">
 				<td>Total</td>
-				<td> {{ order.total | currency:'EUR '}}</td>
+				<td> {{ order.total | currency}}</td>
 			</tr>
 		</tfoot>
 	</table>
 	<div>
-		<button class="btn btn-success" data-ng-click="update();">update</button>
+		<button class="btn-lg btn-success" data-ng-click="update();">update</button>
 		<a href="#!/">
-			<button class="btn btn-info">back</button>
+			<button class="btn-lg btn-info">back</button>
 		</a>
 	</div>
 </div>

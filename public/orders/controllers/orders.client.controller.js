@@ -10,9 +10,14 @@ angular.module('orders').controller('OrdersController', ['$scope', '$routeParams
         $scope.userSelection = UserSelection;
         $scope.aggregatedItems = [];
 
-        $scope.reset = function () {
+        $scope.reset = function (time) {
+            time = time ? time : 0;
+            // console.log('reset scheduled in: ' + time);
+            // setTimeout(function () {
+            //     console.log('resetting');
             $scope.currentOrder.reset();
             $scope.userSelection.reset();
+            // }, time);
         };
 
         $scope.viewOne = function (order) {
@@ -52,8 +57,9 @@ angular.module('orders').controller('OrdersController', ['$scope', '$routeParams
             // Use the order '$save' method to send an appropriate POST request
             order.$save(function (response) {
                 // If an order was created successfully, redirect the user to the order's page
-                $scope.reset();
-                $location.path('orders/' + response._id);
+                $scope.reset(500);
+                $scope.find(response.creator);
+                // $location.path('orders/' + response._id);
             }, function (errorResponse) {
                 // Otherwise, present the user with the error message
                 $scope.error = errorResponse.data.message;
@@ -107,7 +113,8 @@ angular.module('orders').controller('OrdersController', ['$scope', '$routeParams
             } else {
                 // Otherwise, use the order '$remove' method to delete the order
                 $scope.order.$remove(function () {
-                    $location.path('orders');
+                    $location.path('/');
+                    $scope.reset();
                 });
             }
         };

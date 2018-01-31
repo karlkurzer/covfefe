@@ -11,23 +11,23 @@
         </thead>
         <tbody>
             <tr data-ng-repeat="item in currentOrder.items track by $index" data-ng-click="removeFromCurrentOrder($index)">
-                <td>{{ item.price | currency:'EUR ' }}</td>
+                <td>{{ item.price | currency }}</td>
                 <td>{{ item.name }}</td>
             </tr>
         </tbody>
         <tfoot>
             <tr data-ng-show="currentOrder.creator.balance > currentOrder.total" class="success">
                 <td>Total</td>
-                <td> {{ currentOrder.total | currency:'EUR '}}</td>
+                <td> {{ currentOrder.total | currency}}</td>
             </tr>
             <tr data-ng-hide="currentOrder.creator.balance > currentOrder.total" class="danger">
                 <td>Total</td>
-                <td> {{ currentOrder.total | currency:'EUR '}}</td>
+                <td> {{ currentOrder.total | currency}}</td>
             </tr>
         </tfoot>
     </table>
     <div>
-        <button data-ng-disabled="!currentOrder.items.length" class="btn btn-success" data-ng-click="create();">Order</button>
-        <button class="btn btn-info" data-ng-click="reset();">Reset</button>
+        <button data-ng-disabled="!currentOrder.items.length" class="btn-lg btn-success" data-ng-click="create();">Order</button>
+        <button class="btn-lg btn-info" data-ng-click="reset();">Reset</button>
     </div>
 </div>

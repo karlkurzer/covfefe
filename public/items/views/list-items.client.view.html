@@ -13,7 +13,7 @@
 			<tr style="cursor: pointer;"
 			data-ng-repeat="item in items | orderBy: 'price'"
 			data-ng-click="addToOrder(item);">
-				<td>{{ item.price | currency:'EUR ' }}</td>
+				<td>{{ item.price | currency}}</td>
 				<td>{{ item.name }}</td>
 			</tr>
 		</tbody>

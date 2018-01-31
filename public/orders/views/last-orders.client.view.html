@@ -13,7 +13,7 @@
 				data-ng-repeat="order in orders
 				| limitTo: 5" data-ng-click="viewOne(order)">
 				<td>{{order.createdAt | date: 'short'}}</td>
-				<td>{{order.total | currency:'EUR '}}</td>
+				<td>{{order.total | currency}}</td>
 			</tr></a>
 		</tbody>
 	</table>

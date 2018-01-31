@@ -13,7 +13,7 @@
 				<tr data-ng-repeat="order in orders track by $index" data-ng-click="viewOne(order)">
 				<td>{{order.createdAt | date: 'short'}}</td>
 				<td>{{order.creator.fullName}}</td>
-				<td>{{order.total | currency:'EUR '}}</td>
+				<td>{{order.total | currency}}</td>
 				<!-- <td data-ng-repeat="item in order.items">
 							{{ item.name }};
 						</td> -->

@@ -1,8 +1,12 @@
 * {
-    font-size: 19px;
-    line-height: 2;
+    font-size: 23px;
+    line-height: 2.3;
  }
 
 .btn-nameFilter {
+    padding: 10px 20px;
+}
+
+.btn-lg {
     padding: 10px 20px;
 }
