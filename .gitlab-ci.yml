@@ -16,7 +16,7 @@ deploy_staging:
   script:
     - echo "Deploy to staging server"
   environment:
-    name: staging
+    name: services
     url: http://ids-services.fzi.de
   only:
   - master
