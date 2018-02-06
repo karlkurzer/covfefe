@@ -4,13 +4,13 @@
 	<!-- Show the editing buttons to the order creator -->
 	<div class="form-group row col-md-4">
 		<label for="firstName">first name</label>
-		<p data-ng-bind="user.firstName" type="text" class="form-control" id="firstName"></p>
+		<p data-ng-bind="user.firstName" type="text" class="form-control" id="firstName" disabled></p>
 		<label for="lastName">last name</label>
-		<p data-ng-bind="user.lastName" type="text" class="form-control" id="lastName"></p>
+		<p data-ng-bind="user.lastName" type="text" class="form-control" id="lastName" disabled></p>
 		<label for="userEmail">email</label>
-		<p data-ng-bind="user.email" type="text" class="form-control" id="userEmail"></p>
+		<p data-ng-bind="user.email" type="text" class="form-control" id="userEmail" disabled></p>
 		<label for="balance">balance</label>
-		<p data-ng-bind="user.balance" type="text" class="form-control" id="balance"></p>
+		<p data-ng-bind="user.balance" type="text" class="form-control" id="balance" disabled></p>
 	</div>
 	<div class="row col-md-12">
 		<button class="btn-lg btn-success" data-ng-click="editOne(user);">edit</button>
