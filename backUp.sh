@@ -10,5 +10,5 @@ mkdir -p $destination
 mongodump -h localhost -d covfefe -u trump -p lo6qaiaekpxpwmfqlsqbvbujpqccunrdcdmwqpe -o $destination
 
 ### DELETE OLD BACKUPS
-find /$baseDir/$projectDir -type d -mtime +7 -exec rm -rf {} \;
+find /$baseDir/$projectDir -type d -mtime +3 -exec rm -rf {} \;
 
