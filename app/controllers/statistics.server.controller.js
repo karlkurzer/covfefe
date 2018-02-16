@@ -18,16 +18,23 @@ var getErrorMessage = function(err) {
 };
 
 exports.ordersFrequency = function (req, res) {
-	Order.find().sort('-createdAt')
-	.exec(function(err, orders) {
-		if (err) {
-			// If an error occurs send the error message
-			return res.status(400).send({
-				message: getErrorMessage(err)
-			});
-		} else {
-			// Send a JSON representation of the order 
-			res.json(orders);
-		}
-	});
+
+	Order.aggregate(
+		{ $project: { "h":{ $hour: "$createdAt"} } },
+		{ $group:{ 
+			"_id": { "hour": "$h" },
+			"total":{ $sum: 1} } },
+		{ $sort : { "_id.hour" : 1 } }
+		).exec(function(err, orders) {
+			if (err) {
+				// If an error occurs send the error message
+				return res.status(400).send({
+					message: getErrorMessage(err)
+				});
+			} else {
+				console.log(orders);
+				// Send a JSON representation of the order 
+				res.json({orders});
+			}
+		});
 };

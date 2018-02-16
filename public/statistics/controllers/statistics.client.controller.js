@@ -10,19 +10,21 @@ angular.module('statistics').controller('StatisticsController', ['$scope', 'Auth
 		$scope.chartData = [];
 		$scope.chartLabels = [];
 		$scope.chartSeries = [];
+		// $scope.chartColors = [ '#803690', '#00ADF9', '#DCDCDC', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'];
 
 		// CHART FUNCTIONS
-		$scope.chartDatasetOverride = [{
-			yAxisID: 'y-axis-1'
-		}];
+		$scope.chartDatasetOverride = [
+			{
+			  label: "Bar chart",
+			  borderWidth: 10,
+			  type: 'bar',
+			  fillColor: "rgba(14,72,100,1)"
+			}
+		  ];
+
 		$scope.chartOptions = {
-			scales: {
-				yAxes: [{
-					id: 'y-axis-1',
-					type: 'linear',
-					display: true,
-					position: 'left'
-				}]
+			title: {
+				display: true
 			}
 		};
 
@@ -32,11 +34,16 @@ angular.module('statistics').controller('StatisticsController', ['$scope', 'Auth
 			};
 
 			var config = {
-				params: data
+				params: data				
 			};
 
 			$http.get('/api/statistics/orders/frequency', config).then(function (res) {
-				console.log(res);
+				$scope.data = res.data.orders;
+				$scope.chartOptions.title.text = "Order Frequency by Hour";
+                for (let index = 0; index < $scope.data.length; index++) {
+                    $scope.chartData.push($scope.data[index].total);
+                    $scope.chartLabels.push($scope.data[index]._id.hour);
+                }
 			}, function (res) {
 				console.log(res);
 			});
