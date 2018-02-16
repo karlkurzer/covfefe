@@ -2,23 +2,29 @@
 <div class="row col-md-12" data-ng-controller="UsersController" data-ng-init="findOne();">
 	<h1>Edit User</h1>
 	<!-- Show the editing buttons to the order creator -->
-	<div class="form-group row col-md-4">
-		<label for="firstName">first name</label>
-		<input data-ng-model="user.firstName" type="text" class="form-control" id="firstName">
-		<label for="lastName">last name</label>
-		<input data-ng-model="user.lastName" type="text" class="form-control" id="lastName">
-		<label for="userEmail">email</label>
-		<input data-ng-model="user.email" type="text" class="form-control" id="userEmail">
-		<label for="balance">balance</label>
-		<input data-ng-model="user.balance" type="text" class="form-control" id="balance" disabled>
-		<label for="deposit">deposit</label>
-		<input data-ng-model="deposit" type="text" class="form-control" id="deposit">
-	</div>
-	<div class="row col-md-12">
-		<button class="btn-lg btn-success" data-ng-click="update(deposit);">update</button>
-		<button class="btn-lg btn-danger" data-ng-click="delete();">delete</button>
-		<a href="#!/">
-			<button class="btn-lg btn-info">back</button>
-		</a>
+	<div class="row col-md-4">
+		<div class="form-group">
+			<label for="firstName">first name</label>
+			<input data-ng-model="user.firstName" type="text" class="form-control" id="firstName">
+			<label for="lastName">last name</label>
+			<input data-ng-model="user.lastName" type="text" class="form-control" id="lastName">
+			<label for="userEmail">email</label>
+			<input data-ng-model="user.email" type="text" class="form-control" id="userEmail">
+			<label for="balance">balance</label>
+			<input data-ng-model="user.balance" type="text" class="form-control" id="balance" disabled>
+			<label for="deposit">deposit</label>
+			<input data-ng-model="deposit" type="text" class="form-control" id="deposit">
+		</div>
+		<div>
+			<button class="btn-lg btn-primary btn-block" data-ng-click="update(deposit);">update</button>
+			<a href="#!/">
+				<button class="btn-lg btn-block">back</button>
+			</a>
+			<div class="form-check">
+					<input type="checkbox" class="form-check-input" id="deletion" data-ng-model="enableDelete">
+					<label class="form-check-label" for="deletion">enable delete</label>
+				  </div>
+			<button type="button" class="btn-lg btn-danger btn-block" data-ng-show="enableDelete" data-ng-click="delete();">delete</button>
+		</div>
 	</div>
 </div>

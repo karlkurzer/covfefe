@@ -1,32 +1,34 @@
 <!-- The order view -->
-<div class="row col-md-8 col-s-10 col-xs-12" data-ng-controller="OrdersController" data-ng-init="findOne()">
+<div class="row col-md-12" data-ng-controller="OrdersController" data-ng-init="findOne()">
 	<h1>Order</h1>
 	<h3>by {{ order.creator.fullName }} @ {{ order.createdAt | date: 'short' }}</h3>
 	<!-- Show the editing buttons to the order creator -->
-	<table class="table table-condensed table-hover">
-		<thead>
-			<tr>
-				<th>Price</th>
-				<th>Name</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr data-ng-repeat="item in order.items">
-				<td>{{ item.price | currency }}</td>
-				<td>{{ item.name }}&nbsp;<span data-ng-click="removeFromOrder($index);" class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
-			</tr>
-		</tbody>
-		<tfoot>
-			<tr class="success">
-				<td>Total</td>
-				<td> {{ order.total | currency}}</td>
-			</tr>
-		</tfoot>
-	</table>
-	<div>
-		<button class="btn-lg btn-success" data-ng-click="update();">update</button>
+	<div class="row col-md-6 col-s-8 col-xs-12">
+		<table class="table table-condensed table-hover">
+			<thead>
+				<tr>
+					<th>Price</th>
+					<th>Name</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="item in order.items">
+					<td>{{ item.price | currency }}</td>
+					<td>{{ item.name }}&nbsp;
+						<span data-ng-click="removeFromOrder($index);" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr class="success">
+					<td>Total</td>
+					<td> {{ order.total | currency}}</td>
+				</tr>
+			</tfoot>
+		</table>
+		<button class="btn-lg btn-primary btn-block" data-ng-click="update();">update</button>
 		<a href="#!/">
-			<button class="btn-lg btn-info">back</button>
+			<button class="btn-lg btn-block">back</button>
 		</a>
 	</div>
 </div>
