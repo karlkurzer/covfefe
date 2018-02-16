@@ -7,6 +7,7 @@
     "angular-resource": "~1.4",
     "angular-chart.js": "~1.1.1",
     "bootstrap": "^3.3.7",
-    "angular-i18n": "^1.6.8"
+    "angular-i18n": "^1.6.8",
+    "jquery": "^3.3.1"
   }
 }
