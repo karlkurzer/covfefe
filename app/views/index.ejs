@@ -15,13 +15,44 @@
 </head>
 
 <body>
+	<div class="bs-example bs-navbar-top-example" data-example-id="navbar-fixed-to-top">
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="collapsed navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-7"
+					    aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="/#!/" class="navbar-brand">
+						<p style="margin-top:-15px">
+						<img src="/../../assets/images/icon/favicon-32x32.png" alt="covfefe">&nbsp;covfefe
+						</p>
+					</a>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-7">
+					<ul class="nav navbar-nav">
+						<li class="active">
+							<a href="/#!/">Home</a>
+						</li>
+						<li>
+							<a href="/#!/orders">Orders</a>
+						</li>
+						<li>
+							<a href="/#!/statistics">Satistics</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+
 	<div class="container">
 		<div style="margin-top: 20px"></div>
 		<div class="row col-12-md">
-			<a href="/#!/">
-				<img src="/../../assets/images/icon/favicon-32x32.png" alt="Home">
-			</a>
-			covfefe
+
 		</div>
 		<!-- Render AngularJS views  -->
 		<div ng-view></div>
@@ -40,6 +71,8 @@
 	<script type="text/javascript" src="/lib/angular-i18n/angular-locale_de-de.js"></script>
 	<script type="text/javascript" src="/lib/chart.js/dist/Chart.js"></script>
 	<script type="text/javascript" src="/lib/angular-chart.js/dist/angular-chart.js"></script>
+	<script type="text/javascript" src="/lib/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="/lib/bootstrap/dist/js/bootstrap.js"></script>
 
 	<!-- Load the articles module -->
 	<script type="text/javascript" src="/articles/articles.client.module.js"></script>

@@ -271,13 +271,21 @@ exports.requiresLogin = function(req, res, next) {
 
 // Create a new controller middleware that is used to authorize authenticated operations 
 exports.requiresAdmin = function(req, res, next) {
-	// If a user is not authenticated send the appropriate error message
-	if (!req._passport.session.user.admin) {
-		return res.status(401).send({
-			message: 'User is not logged in'
-		});
-	}
 
-	// Call the next middleware
-	next();
+	User.findById(req._passport.session.user).exec(function(err, sessionUser) {
+		if (err) return next(err);
+		if (!sessionUser) return next(new Error('Failed to load user ' + req._passport.session.user));
+
+		// If an user is found use the 'request' object to pass it to the next middleware
+		req.sessionUser = sessionUser;
+
+		// If a user is not authenticated send the appropriate error message
+		if (!req.sessionUser.admin) {
+			return res.status(401).send({
+				message: 'User is not admin'
+			});
+		}
+		// Call the next middleware
+		next();
+	});	
 };

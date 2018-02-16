@@ -33,6 +33,7 @@ angular.module('items').controller('ItemsController', ['$scope', '$routeParams',
             if ($scope.currentOrder.creator.hasOwnProperty('_id')) {
                 $scope.currentOrder.items.push(item);
                 $scope.currentOrder.total += item.price;
+                $scope.currentOrder.step = 3;
             }
         };
 
@@ -62,16 +63,6 @@ angular.module('items').controller('ItemsController', ['$scope', '$routeParams',
 
         // Create a new controller method for retrieving a single item
         $scope.findOne = function() {
-        	// Use the item 'get' method to send an appropriate GET request
-            // Items.query({ itemId: $routeParams.itemId }).$promise.then(function(data) {
-            //     $scope.chartSeries.push($routeParams.itemId);
-            //     $scope.currentName = data[0].name;
-            //     $scope.currentSymbol = data[0].symbol;
-            //     for (let index = 0; index < data.length; index++) {
-            //         $scope.chartData.push(data[index].price_usd);
-            //         $scope.chartLabels.push(new Date(data[index].last_updated*1000));
-            //     }
-            //   });
         };
 
         // Create a new controller method for updating a single item

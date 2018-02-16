@@ -1,5 +1,5 @@
 <!-- The list orders view -->
-<div class="row">
+<div>
     <h1>Order</h1>
     <!-- Show the editing buttons to the order creator -->
     <table class="table table-condensed table-hover">
@@ -12,7 +12,7 @@
         <tbody>
             <tr data-ng-repeat="item in currentOrder.items track by $index" data-ng-click="removeFromCurrentOrder($index)">
                 <td>{{ item.price | currency }}</td>
-                <td>{{ item.name }}</td>
+                <td>{{ item.name }}&nbsp;<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
             </tr>
         </tbody>
         <tfoot>
@@ -27,7 +27,7 @@
         </tfoot>
     </table>
     <div>
-        <button data-ng-disabled="!currentOrder.items.length" class="btn-lg btn-success" data-ng-click="create();">Order</button>
-        <button class="btn-lg btn-info" data-ng-click="reset();">Reset</button>
+        <button data-ng-disabled="!currentOrder.items.length" class="btn-lg btn-primary btn-block" data-ng-click="create();">Order</button>
+        <button class="btn-lg btn-block" data-ng-click="reset();">Back</button>
     </div>
 </div>

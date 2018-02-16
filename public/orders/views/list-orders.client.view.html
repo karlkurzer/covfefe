@@ -1,5 +1,5 @@
 <!-- The list orders view -->
-<div class="row" data-ng-controller="OrdersController" data-ng-init="find()">
+<div data-ng-controller="OrdersController" data-ng-init="find()">
 	<h1>Orders</h1>
 	<table class="table table-condensed table-hover">
 		<thead>
@@ -14,11 +14,7 @@
 				<td>{{order.createdAt | date: 'short'}}</td>
 				<td>{{order.creator.fullName}}</td>
 				<td>{{order.total | currency}}</td>
-				<!-- <td data-ng-repeat="item in order.items">
-							{{ item.name }};
-						</td> -->
 			</tr></a>
 		</tbody>
 	</table>
-	<div data-ng-include="'/../../example/views/footer.client.view.html'"></div>
 </div>
