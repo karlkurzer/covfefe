@@ -36,6 +36,9 @@ angular.module('orders').controller('OrdersController', ['$scope', '$routeParams
         $scope.removeFromCurrentOrder = function (index) {
             var item = $scope.currentOrder.items.splice(index, 1);
             $scope.currentOrder.total -= item[0].price;
+            if (!$scope.currentOrder.items.length) {
+                $scope.currentOrder.step = 2;
+            }
         };
 
 

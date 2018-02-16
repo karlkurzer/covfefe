@@ -1,5 +1,5 @@
 <!-- The order view -->
-<div class="row col-md-12" data-ng-controller="OrdersController" data-ng-init="findOne()">
+<div class="col-md-12" data-ng-controller="OrdersController" data-ng-init="findOne()">
 	<h1>Order</h1>
 	<h3>by {{ order.creator.fullName }} @ {{ order.createdAt | date: 'fullDate' }}</h3>
 	<!-- Show the editing buttons to the order creator -->

@@ -22,14 +22,19 @@ angular.module('users').controller('UsersController', ['$scope', '$routeParams',
         $scope.selectForOrder = function(user, index) {
             $scope.userSelection.userIndex = index;
             $scope.currentOrder.creator = user;
+            $scope.currentOrder.step = 2;
         }
 
         $scope.addLetter = function(letter) {
             $scope.currentOrder.nameFilter.fullName += letter;
+            $scope.currentOrder.step = 1;
         }
 
         $scope.removeLetter = function() {
             $scope.currentOrder.nameFilter.fullName = $scope.currentOrder.nameFilter.fullName.slice(0, -1);
+            if ($scope.currentOrder.nameFilter.fullName) {
+                $scope.currentOrder.step = 0;
+            }
         }
 
         // Create a new controller method for creating new users
