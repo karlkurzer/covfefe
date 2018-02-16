@@ -2,22 +2,17 @@
 'use strict';
 
 // Create the 'orders' controller
-angular.module('orders').controller('OrdersController', ['$scope', '$routeParams', '$location', 'Authentication', 'Orders', 'CurrentOrder', 'UserSelection',
-    function ($scope, $routeParams, $location, Authentication, Orders, CurrentOrder, UserSelection) {
+angular.module('orders').controller('OrdersController', ['$scope', '$routeParams', '$location', '$timeout', 'Authentication', 'Orders', 'CurrentOrder', 'UserSelection',
+    function ($scope, $routeParams, $location, $timeout, Authentication, Orders, CurrentOrder, UserSelection) {
         // Expose the Authentication service
         $scope.authentication = Authentication;
         $scope.currentOrder = CurrentOrder;
         $scope.userSelection = UserSelection;
         $scope.aggregatedItems = [];
 
-        $scope.reset = function (time) {
-            time = time ? time : 0;
-            // console.log('reset scheduled in: ' + time);
-            // setTimeout(function () {
-            //     console.log('resetting');
+        $scope.reset = function () {
             $scope.currentOrder.reset();
             $scope.userSelection.reset();
-            // }, time);
         };
 
         $scope.viewOne = function (order) {
@@ -49,7 +44,6 @@ angular.module('orders').controller('OrdersController', ['$scope', '$routeParams
 
         // Create a new controller method for creating new orders
         $scope.create = function () {
-            if ($scope.currentOrder.creator.balance < $scope.currentOrder.total) $scope.shame();
             // Use the form fields to create a new order $resource object
             var order = new Orders({
                 items: $scope.currentOrder.items,
@@ -60,8 +54,16 @@ angular.module('orders').controller('OrdersController', ['$scope', '$routeParams
             // Use the order '$save' method to send an appropriate POST request
             order.$save(function (response) {
                 // If an order was created successfully, redirect the user to the order's page
-                $scope.reset(500);
-                $scope.find(response.creator);
+                if ($scope.currentOrder.creator.balance < $scope.currentOrder.total)
+                {
+                    $scope.shame();
+                    $scope.currentOrder.step = 5;
+                } else {
+                    $scope.currentOrder.step = 4;
+                }
+                
+                $timeout(function(){ $scope.reset(); }, 3000);
+                // $scope.find(response.creator);
                 // $location.path('orders/' + response._id);
             }, function (errorResponse) {
                 // Otherwise, present the user with the error message

@@ -12,4 +12,14 @@
     padding-left:0;
 }
 
+.well-success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.well-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
+
 body { padding-top: 70px; }
