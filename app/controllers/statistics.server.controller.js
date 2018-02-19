@@ -20,11 +20,11 @@ var getErrorMessage = function(err) {
 exports.ordersFrequency = function (req, res) {
 
 	Order.aggregate(
-		{ $project: { "h":{ $hour: "$createdAt"} } },
-		{ $group:{ 
+		{ "$project": { "h":{ "$hour": "$createdAt"} } },
+		{ "$group":{ 
 			"_id": { "hour": "$h" },
 			"total":{ $sum: 1} } },
-		{ $sort : { "_id.hour" : 1 } }
+		{ "$sort" : { "_id.hour" : 1 } }
 		).exec(function(err, orders) {
 			if (err) {
 				// If an error occurs send the error message
@@ -32,7 +32,6 @@ exports.ordersFrequency = function (req, res) {
 					message: getErrorMessage(err)
 				});
 			} else {
-				console.log(orders);
 				// Send a JSON representation of the order 
 				res.json({orders});
 			}
