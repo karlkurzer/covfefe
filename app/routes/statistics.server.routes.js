@@ -10,5 +10,6 @@ var users = require('../../app/controllers/users.server.controller'),
 module.exports = function(app) {
 	// Set up the 'statistics' routes 
     app.get('/api/statistics/orders/frequency', statistics.ordersFrequency);
+    app.get('/api/statistics/orders/distribution', statistics.ordersDistribution);
     
 };

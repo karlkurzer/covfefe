@@ -20,12 +20,32 @@ var getErrorMessage = function(err) {
 exports.ordersFrequency = function (req, res) {
 
 	Order.aggregate(
-		{ "$project": { "h":{ "$hour": "$createdAt"} } },
-		{ "$group":{ 
-			"_id": { "hour": "$h" },
-			"total":{ $sum: 1} } },
-		{ "$sort" : { "_id.hour" : 1 } }
-		).exec(function(err, orders) {
+		{ $project: { h: { $hour: "$createdAt"} } },
+		{ $group:{ _id: "$h", total: { $sum: 1} } },
+		{ $sort : { _id : 1 } })
+		.exec(function(err, orders) {
+			if (err) {
+				// If an error occurs send the error message
+				return res.status(400).send({
+					message: getErrorMessage(err)
+				});
+			} else {
+				// Send a JSON representation of the order 
+				res.json({orders});
+			}
+		});
+};
+
+exports.ordersDistribution = function (req, res) {
+
+	Order.aggregate(
+		{ $unwind: "$items" },
+		{ $lookup: { from: "items", localField: "items", foreignField: "_id", as: "item"}},
+		{ $project: { name : "$item.name" } },
+		{ $unwind: "$name"},
+		{ $group: { _id: "$name", total: { $sum: 1 } } },
+		{ $sort: { total: -1 }})
+		.exec(function(err, orders) {
 			if (err) {
 				// If an error occurs send the error message
 				return res.status(400).send({
