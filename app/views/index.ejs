@@ -3,6 +3,7 @@
 
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="mobile-web-app-capable" content="yes">
 
 	<!-- Use the 'title' property to render a page title  -->
 	<title>
@@ -13,13 +14,6 @@
 	<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/assets/css/custom.css">
 </head>
-<button id="goFS">Go fullscreen</button>
-<script>
-	var goFS = document.getElementById("goFS");
-	goFS.addEventListener("click", function () {
-		document.body.requestFullscreen();
-	}, false);
-</script>
 
 <body>
 	<div class="bs-example bs-navbar-top-example" data-example-id="navbar-fixed-to-top">
