@@ -116,7 +116,9 @@ angular.module("statistics").controller("StatisticsController", [
         function(res) {
           $scope.data = res.data.orders;
           $scope.chartOptions.title.text = "Stock by Drink";
-          $scope.chartOptions.scales.yAxes[0].ticks.stepSize = 1;
+          $scope.chartOptions.scales.yAxes[0].ticks.stepSize = 2;
+          $scope.chartOptions.scales.yAxes[0].ticks.min = 0;
+
           for (let index = 0; index < $scope.data.length; index++) {
             $scope.chartData.push($scope.data[index].total);
             $scope.chartLabels.push($scope.data[index]._id);

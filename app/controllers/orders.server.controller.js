@@ -3,6 +3,7 @@
 
 // Load the module dependencies
 var mongoose = require("mongoose"),
+  _ = require("lodash"),
   Order = mongoose.model("Order"),
   User = mongoose.model("User"),
   Item = mongoose.model("Item");
@@ -19,7 +20,7 @@ var getErrorMessage = function(err) {
 };
 
 // Create a new controller method that creates new orders
-exports.create = function(req, res) {
+exports.create = function(req, res, next) {
   // Create a new order object
   var order = new Order(req.body);
 
@@ -32,15 +33,9 @@ exports.create = function(req, res) {
       });
     } else {
       req.user.balance -= order.total;
-      // UPDATE THE USER
-      User.findByIdAndUpdate(
-        req.user._id,
-        { balance: req.user.balance },
-        function() {
-          // Send a JSON representation of the order
-          res.json(order);
-        }
-      );
+      req.items = order.items;
+      req.operation = "create";
+      next();
     }
   });
 };
@@ -72,10 +67,16 @@ exports.read = function(req, res) {
 };
 
 // Create a new controller method that updates an existing order
-exports.update = function(req, res) {
+exports.update = function(req, res, next) {
   // Get the order from the 'request' object
   var balanceUpdate = req.order.total - req.body.total;
   var order = req.order;
+  req.items = JSON.parse(JSON.stringify(req.order.items));
+  _.pullAllWith(
+    req.items,
+    JSON.parse(JSON.stringify(req.body.items)),
+    _.isEqual
+  );
 
   // Update the order fields
   order.items = req.body.items;
@@ -90,22 +91,20 @@ exports.update = function(req, res) {
       });
     } else {
       req.user.balance += balanceUpdate;
-      User.findByIdAndUpdate(
-        req.user._id,
-        { balance: req.user.balance },
-        function() {
-          // Send a JSON representation of the order
-          res.json(order);
-        }
-      );
+      req.order = order;
+      req.operation = "update";
+      // Call the next middleware
+      next();
     }
   });
 };
 
 // Create a new controller method that delete an existing order
-exports.delete = function(req, res) {
+exports.delete = function(req, res, next) {
   // Get the order from the 'request' object
   var order = req.order;
+  // Set the items that need to be restocked
+  req.items = JSON.parse(JSON.stringify(req.order.items));
 
   // Use the model 'remove' method to delete the order
   order.remove(function(err) {
@@ -116,14 +115,59 @@ exports.delete = function(req, res) {
       });
     } else {
       req.user.balance += order.total;
-      User.findByIdAndUpdate(
-        req.user._id,
-        { balance: req.user.balance },
-        function() {
-          // Send a JSON representation of the order
-          res.json(order);
-        }
-      );
+      req.order = {};
+      req.operation = "update";
+      // Call the next middleware
+      next();
+    }
+  });
+};
+
+// Create a new controller method that updates the user balance
+exports.updateUserBalance = function(req, res, next) {
+  // Update the user balance
+  User.findByIdAndUpdate(req.user._id, { balance: req.user.balance }, function(
+    err
+  ) {
+    if (err) {
+      // If an error occurs send the error message
+      return res.status(400).send({
+        message: getErrorMessage(err)
+      });
+    } else {
+      // Send a JSON representation of the user
+      next();
+    }
+  });
+};
+
+// Create a new controller method that updates the item stock
+exports.updateItemStock = function(req, res) {
+  // Update the item stock
+  var qty;
+  if (req.operation == "create") {
+    qty = -1;
+  } else {
+    qty = 1;
+  }
+  var bulkUpdate = req.items.map(function(item) {
+    return {
+      updateOne: {
+        filter: { _id: mongoose.Types.ObjectId(item._id) },
+        update: { $inc: { stock: qty } }
+      }
+    };
+  });
+
+  Item.collection.bulkWrite(bulkUpdate, function(err, result) {
+    if (err) {
+      // If an error occurs send the error message
+      return res.status(400).send({
+        message: getErrorMessage(err)
+      });
+    } else {
+      // Send a JSON representation of the user
+      res.json(req.order);
     }
   });
 };
