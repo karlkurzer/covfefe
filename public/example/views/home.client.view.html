@@ -1,23 +1,24 @@
 <!-- The example view -->
 <div class="row" style="margin-top: -30px">
-        <div class="col-md-12" data-ng-include="'/../../example/views/description.client.view.html'"></div>    
+    <div class="col-md-12" data-ng-include="'/../../example/views/description.client.view.html'"></div>
 </div>
 
 <div class="row" data-ng-controller="OrdersController">
-    <h1 class="col-md-12" data-ng-if="currentOrder.creator._id">
-        {{ currentOrder.creator.fullName }} {{currentOrder.creator.balance | currency}}
-    </h1>
+    <div data-ng-if="online">
+        <h1 class="col-md-12" data-ng-if="currentOrder.creator._id">
+            {{ currentOrder.creator.fullName }} {{currentOrder.creator.balance | currency}}
+        </h1>
 
-    <div class="col-md-6 col-s-6 col-xs-12" data-ng-if="!currentOrder.creator._id" data-ng-include="'/../../example/views/name-filter.client.view.html'"></div>
+        <div class="col-md-6 col-s-6 col-xs-12" data-ng-if="!currentOrder.creator._id" data-ng-include="'/../../example/views/name-filter.client.view.html'"></div>
 
-    <div class="col-md-6 col-s-6 col-xs-12" data-ng-if="!currentOrder.creator._id" data-ng-include="'/../../users/views/list-users.client.view.html'"></div>
-    
-    <div class="col-md-4 col-s-6 col-xs-12" data-ng-if="currentOrder.creator._id" data-ng-include="'/../../items/views/list-items.client.view.html'"></div>
-    
-    <div class="col-md-4 col-s-6 col-xs-12" data-ng-if="currentOrder.creator._id" data-ng-include="'/../../orders/views/current-order.client.view.html'"></div>
+        <div class="col-md-6 col-s-6 col-xs-12" data-ng-if="!currentOrder.creator._id" data-ng-include="'/../../users/views/list-users.client.view.html'"></div>
 
-    <div class="col-md-4 col-s-6 col-xs-12" data-ng-if="currentOrder.creator._id" data-ng-include="'/../../orders/views/last-orders.client.view.html'"></div>
-    
-    <!-- <p class="text-center">designed by kurzer@fzi.de</p> -->
+        <div class="col-md-4 col-s-6 col-xs-12" data-ng-if="currentOrder.creator._id" data-ng-include="'/../../items/views/list-items.client.view.html'"></div>
 
+        <div class="col-md-4 col-s-6 col-xs-12" data-ng-if="currentOrder.creator._id" data-ng-include="'/../../orders/views/current-order.client.view.html'"></div>
+
+        <div class="col-md-4 col-s-6 col-xs-12" data-ng-if="currentOrder.creator._id" data-ng-include="'/../../orders/views/last-orders.client.view.html'"></div>
+
+        <!-- <p class="text-center">designed by kurzer@fzi.de</p> -->
+    </div>
 </div>

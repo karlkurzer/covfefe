@@ -1,7 +1,7 @@
 <div data-ng-controller="OrdersController">
     Hey! I am
     <strong>covfefe</strong> the kitty of IDS/TKS. Please use me every time you purchase a drink. It's easy!
-    <div class="well well-sm text-center" data-ng-class="{'well-success': currentOrder.step == 4, 'well-danger': currentOrder.step == 5}">
+    <div data-ng-show="online" class="well well-sm text-center" data-ng-class="{'well-success': currentOrder.step == 4, 'well-danger': currentOrder.step == 5}">
         <ol class="list-inline">
             <li data-ng-show="currentOrder.step == 0">1. Filter your name
                 <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
@@ -18,6 +18,13 @@
             <li data-ng-show="currentOrder.step == 4">Wohooo you made it!
             </li>
             <li data-ng-show="currentOrder.step == 5">Don't you feel ashamed?
+            </li>
+        </ol>
+    </div>
+    <div data-ng-hide="online" class="well well-sm text-center well-danger">
+        <ol class="list-inline">
+            <li>
+                <strong>covfefe</strong> seems to be offline, please report this to kurzer@fzi.de
             </li>
         </ol>
     </div>

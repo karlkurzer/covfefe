@@ -32,10 +32,19 @@ exports.create = function(req, res, next) {
         message: getErrorMessage(err)
       });
     } else {
-      req.user.balance -= order.total;
-      req.items = order.items;
-      req.operation = "create";
-      next();
+      order.populate("items", function(err, doc) {
+        if (err) {
+          // If an error occurs send the error message
+          return res.status(400).send({
+            message: getErrorMessage(err)
+          });
+        } else {
+          req.user.balance -= order.total;
+          req.items = doc.items;
+          req.operation = "create";
+          next();
+        }
+      });
     }
   });
 };
@@ -72,12 +81,13 @@ exports.update = function(req, res, next) {
   var balanceUpdate = req.order.total - req.body.total;
   var order = req.order;
   req.items = JSON.parse(JSON.stringify(req.order.items));
-  _.pullAllWith(
-    req.items,
-    JSON.parse(JSON.stringify(req.body.items)),
-    _.isEqual
-  );
-
+  //iterate over the list of items in the update step
+  for (let i = 0; i < req.body.items.length; i++) {
+    let k = _.findIndex(req.items, req.body.items[i]);
+    if (k > -1) {
+      req.items.splice(k, 1);
+    }
+  }
   // Update the order fields
   order.items = req.body.items;
   order.total = req.body.total;
@@ -150,6 +160,7 @@ exports.updateItemStock = function(req, res) {
   } else {
     qty = 1;
   }
+
   var bulkUpdate = req.items.map(function(item) {
     return {
       updateOne: {
