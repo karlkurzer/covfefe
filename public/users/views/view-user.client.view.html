@@ -14,7 +14,7 @@
 			<p data-ng-bind="user.balance" type="text" class="form-control" id="balance" disabled></p>
 		</div>
 		<div>
-			<button class="btn-lg btn-primary btn-block" data-ng-click="editOne(user);">edit</button>
+			<button data-ng-if="authentication.user.admin" class="btn-lg btn-primary btn-block" data-ng-click="editOne(user);">edit</button>
 			<a href="#!/">
 				<button class="btn-lg btn-block">back</button>
 			</a>

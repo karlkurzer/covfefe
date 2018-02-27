@@ -5,9 +5,15 @@
 
 <div class="row" data-ng-controller="OrdersController">
     <div data-ng-if="online">
-        <h1 class="col-md-12" data-ng-if="currentOrder.creator._id">
-            {{ currentOrder.creator.fullName }} {{currentOrder.creator.balance | currency}}
-        </h1>
+        <div class="col-md-12" data-ng-if="currentOrder.creator._id">
+            <h1 style="display: inline;">
+                {{ currentOrder.creator.fullName }}
+            </h1>
+            <span>Balance {{currentOrder.creator.balance | currency}}&nbsp;|</span>
+            <span class="text-center" data-ng-controller="UsersController" data-ng-click="viewOne(currentOrder.creator);">Details
+                <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+            </span>
+        </div>
 
         <div class="col-md-6 col-s-6 col-xs-12" data-ng-if="!currentOrder.creator._id" data-ng-include="'/../../example/views/name-filter.client.view.html'"></div>
 
