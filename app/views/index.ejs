@@ -57,6 +57,11 @@
 								</li>
 							</ul>
 						</li>
+						<% if(user) { %>
+							<li>
+								<a href="/signout">Signout</a>
+							</li>
+						<% } %>
 					</ul>
 				</div>
 			</div>
@@ -75,7 +80,7 @@
 
 	<!-- Render the user object -->
 	<script type="text/javascript">
-		window.user = <% - user || 'null' %>;
+		window.user = <%- user || 'null' %>;
 	</script>
 
 	<!-- Load local libraries -->
