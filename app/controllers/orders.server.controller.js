@@ -91,6 +91,7 @@ exports.update = function(req, res, next) {
   // Update the order fields
   order.items = req.body.items;
   order.total = req.body.total;
+  order.status = "updated";
 
   // Try saving the updated order
   order.save(function(err) {
@@ -115,9 +116,10 @@ exports.delete = function(req, res, next) {
   var order = req.order;
   // Set the items that need to be restocked
   req.items = JSON.parse(JSON.stringify(req.order.items));
+  order.status = "deleted";
 
   // Use the model 'remove' method to delete the order
-  order.remove(function(err) {
+  order.save(function(err) {
     if (err) {
       // If an error occurs send the error message
       return res.status(400).send({
