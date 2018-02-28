@@ -24,12 +24,14 @@ module.exports = function(app) {
     .get(orders.read)
     .put(
       orders.userByID,
+      orders.notDeleted,
       orders.update,
       orders.updateUserBalance,
       orders.updateItemStock
     )
     .delete(
       orders.userByID,
+      orders.notDeleted,
       orders.delete,
       orders.updateUserBalance,
       orders.updateItemStock

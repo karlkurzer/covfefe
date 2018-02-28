@@ -135,6 +135,16 @@ exports.delete = function(req, res, next) {
   });
 };
 
+// Create a new controller method that tests whether an existing order has been deleted
+exports.notDeleted = function(req, res, next) {
+  // Test whether the order has already been deleted
+  if (req.order.status === "deleted") {
+    return res.json(req.order);
+  } else {
+    next();
+  }
+};
+
 // Create a new controller method that updates the user balance
 exports.updateUserBalance = function(req, res, next) {
   // Update the user balance
