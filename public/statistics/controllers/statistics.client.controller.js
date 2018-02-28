@@ -14,6 +14,51 @@ angular.module("statistics").controller("StatisticsController", [
     $scope.chartData = [];
     $scope.chartLabels = [];
     $scope.chartSeries = [];
+    $scope.colors = {};
+    $scope.colorsFrequency = [
+      "#3E85E5",
+      "#437FDB",
+      "#4979D1",
+      "#4E74C7",
+      "#546EBD",
+      "#5A68B3",
+      "#5F63A9",
+      "#655D9F",
+      "#6A5895",
+      "#70528B",
+      "#764C81",
+      "#7B4777",
+      "#81416D",
+      "#863C63",
+      "#8C3659",
+      "#92304F",
+      "#972B45",
+      "#9D253B",
+      "#A22031",
+      "#A81A27",
+      "#AE141D",
+      "#B30F13",
+      "#B90909",
+      "#BF0400"
+    ];
+
+    $scope.colorsStock = [
+      "#3E85E5",
+      "#576BB7",
+      "#715189",
+      "#8B375B",
+      "#A51D2D",
+      "#BF0400"
+    ];
+
+    $scope.colorsDistribution = [
+      "#3E85E5",
+      "#576BB7",
+      "#715189",
+      "#8B375B",
+      "#A51D2D",
+      "#BF0400"
+    ];
 
     $scope.chartOptions = {
       title: {
@@ -24,7 +69,8 @@ angular.module("statistics").controller("StatisticsController", [
         yAxes: [
           {
             ticks: {
-              fontSize: 25
+              fontSize: 25,
+              min: 0
             }
           }
         ],
@@ -72,6 +118,7 @@ angular.module("statistics").controller("StatisticsController", [
             $scope.chartData.push($scope.data[index].total);
             $scope.chartLabels.push($scope.data[index]._id + ":00");
           }
+          $scope.colors = $scope.colorsFrequency;
         },
         function(res) {
           console.log(res);
@@ -96,6 +143,7 @@ angular.module("statistics").controller("StatisticsController", [
             $scope.chartData.push($scope.data[index].total);
             $scope.chartLabels.push($scope.data[index]._id);
           }
+          $scope.colors = $scope.colorsDistribution;
         },
         function(res) {
           console.log(res);
@@ -116,13 +164,11 @@ angular.module("statistics").controller("StatisticsController", [
         function(res) {
           $scope.data = res.data.orders;
           $scope.chartOptions.title.text = "Stock by Drink";
-          $scope.chartOptions.scales.yAxes[0].ticks.stepSize = 2;
-          $scope.chartOptions.scales.yAxes[0].ticks.min = 0;
-
           for (let index = 0; index < $scope.data.length; index++) {
             $scope.chartData.push($scope.data[index].total);
             $scope.chartLabels.push($scope.data[index]._id);
           }
+          $scope.colors = $scope.colorsStock;
         },
         function(res) {
           console.log(res);
