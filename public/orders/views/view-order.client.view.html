@@ -1,9 +1,10 @@
 <!-- The order view -->
 <div class="col-md-12" data-ng-controller="OrdersController" data-ng-init="findOne()">
 	<h1>Order</h1>
-	<h3>by {{ order.creator.fullName }} @ {{ order.createdAt | date: 'fullDate' }}</h3>
+	<h3>by {{ order.creator.fullName }} on {{ order.createdAt | date: 'fullDate' }}</h3>
 	<!-- Show the editing buttons to the order creator -->
 	<div class="row col-md-6 col-s-8 col-xs-12">
+		<div data-ng-if="order.status !=='created'" class="well well-sm text-center" data-ng-class="{'well-warning': order.status ==='updated', 'well-danger': order.status ==='deleted'}">{{order.status}}</div>
 		<table class="table table-condensed table-hover">
 			<thead>
 				<tr>
@@ -24,11 +25,11 @@
 				</tr>
 			</tfoot>
 		</table>
-		<button class="btn-lg btn-primary btn-block" data-ng-click="editOne(order);">edit</button>
+		<button data-ng-show="order.status !=='deleted'" class="btn-lg btn-primary btn-block" data-ng-click="editOne(order);">edit</button>
 		<a href="#!/">
 			<button class="btn-lg btn-block">back</button>
 		</a>
-		<div class="form-check">
+		<div data-ng-show="order.status !=='deleted'" class="form-check">
 			<input type="checkbox" class="form-check-input" id="deletion" data-ng-model="enableDelete">
 			<label class="form-check-label" for="deletion">enable delete</label>
 		</div>

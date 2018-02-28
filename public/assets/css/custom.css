@@ -13,18 +13,18 @@
 }
 
 .well-success {
-  background-color: #28a745;
-  color: #fff;
-}
-
-.well-danger {
-  background-color: #dc3545;
+  background-color: #5cb85c;
   color: #fff;
 }
 
 .well-warning {
-  background-color: #ffff00;
-  color: #000;
+  background-color: #f0ad4e;
+  color: #fff;
+}
+
+.well-danger {
+  background-color: #d9534f;
+  color: #fff;
 }
 
 body {

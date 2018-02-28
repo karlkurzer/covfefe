@@ -9,12 +9,12 @@
 			</tr>
 		</thead>
 		<tbody>
-				<tr style="cursor: pointer;"
-				data-ng-repeat="order in orders
-				| limitTo: 5" data-ng-click="viewOne(order)">
+			<tr style="cursor: pointer;" data-ng-repeat="order in orders
+				| limitTo: 5" data-ng-click="viewOne(order)" data-ng-class="{'warning': order.status === 'updated', 'danger': order.status === 'deleted'}">
 				<td>{{order.createdAt | date: 'short'}}</td>
 				<td>{{order.total | currency}}</td>
-			</tr></a>
+			</tr>
+			</a>
 		</tbody>
 	</table>
 </div>
