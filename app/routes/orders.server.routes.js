@@ -3,6 +3,7 @@
 
 // Load the module dependencies
 var users = require("../../app/controllers/users.server.controller"),
+  emails = require("../../app/controllers/emails.server.controller"),
   orders = require("../../app/controllers/orders.server.controller");
 
 // Define the routes module' method
