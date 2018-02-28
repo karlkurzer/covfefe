@@ -68,3 +68,26 @@ exports.createOrderReceipt = function(req, res, next) {
   };
   next();
 };
+
+// THE FOLLOWING EMAILs need to be updated
+// Marc.Zofka@fzi.de (Marc.Zofka@fzi.de)
+// Stephan.Heuer@fzi.de (Stephan.Heuer@fzi.de)
+// Kai.Braun@fzi.de (Kai.Braun@fzi.de)
+// Marcel.Kurovski@fzi.de (Marcel.Kurovski@fzi.de)
+// Daniel.Schumacher@fzi.de (Daniel.Schumacher@fzi.de)
+// Ole.Salscheider@fzi.de (Ole.Salscheider@fzi.de)
+// Ana.Skrenkovic@fzi.de (Ana.Skrenkovic@fzi.de)
+// Marius.Gerdes@fzi.de (Marius.Gerdes@fzi.de)
+// Nick.Vlasoff@fzi.de (Nick.Vlasoff@fzi.de)
+// Kasse.SIM@fzi.de (Kasse.SIM@fzi.de)
+// Dominik.Wilke@fzi.de (Dominik.Wilke@fzi.de)
+// Cenk.Uestbes@fzi.de (Cenk.Uestbes@fzi.de)
+// Xizhe.Lian@fzi.de (Xizhe.Lian@fzi.de)
+// Sahin.Tas@fzi.de (Sahin.Tas@fzi.de)
+// Sebastian.Gottwalt@fzi.de (Sebastian.Gottwalt@fzi.de)
+// Polley.Rupert@fzi.de (Polley.Rupert@fzi.de)
+// Alide.Bornhaupt@fzi.de (Alide.Bornhaupt@fzi.de)
+// Daaboul.Karam@fzi.de (Daaboul.Karam@fzi.de)
+// Camilo.Tieck@fzi.de (Camilo.Tieck@fzi.de)
+// Kai.Hermann@fzi.de (Kai.Hermann@fzi.de)
+// Merin.Ylarfledice@fzi.de (Merin.Ylarfledice@fzi.de)
