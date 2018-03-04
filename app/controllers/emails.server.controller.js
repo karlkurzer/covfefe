@@ -60,7 +60,7 @@ exports.createBalanceReceipt = function(req, res, next) {
   // setup email data with unicode symbols
   req.mailOptions = {
     from: "covfefe@fzi.de", // sender address
-    to: "kurzer@fzi.de", // list of receivers
+    to: req.user.email, // list of receivers
     subject: "Balance Update" // Subject line
   };
 
@@ -82,18 +82,3 @@ exports.createBalanceReceipt = function(req, res, next) {
     })
     .catch(console.error);
 };
-
-// // Create a new controller method that retrieves a list of articles
-// exports.createOrderReceipt = function(req, res, next) {
-//   // setup email data with unicode symbols
-//   req.mailOptions = {
-//     from: "covfefe@fzi.de", // sender address
-//     to: "kurzer@fzi.de", // list of receivers
-//     subject: "createOrderReceipt" // Subject line
-//   };
-
-//   req.callback = function() {
-//     return res.json(req.order);
-//   };
-//   next();
-// };
