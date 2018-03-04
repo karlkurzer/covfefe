@@ -55,7 +55,7 @@ exports.sendEmail = function(req, res) {
   });
 };
 
-// Create a new controller method that creates new articles
+// Create a new controller method that creates new balance receipt
 exports.createBalanceReceipt = function(req, res, next) {
   // setup email data with unicode symbols
   req.mailOptions = {
