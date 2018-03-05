@@ -81,7 +81,7 @@ angular.module('users').controller('UsersController', ['$scope', '$routeParams',
         // Create a new controller method for updating a single user
         $scope.update = function(deposit) {
             if(!isNaN(parseFloat(deposit))) {
-                $scope.user.balance += parseFloat(deposit);
+                $scope.user.balance += parseFloat(deposit.replace(',', '.'));
             }
         	// Use the user '$update' method to send an appropriate PUT request
             $scope.user.$update(function(user) {

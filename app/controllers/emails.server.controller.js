@@ -48,7 +48,7 @@ exports.sendEmail = function(req, res) {
           console.log("sendMail: " + error);
         } else {
           console.log("sendMail: " + info);
-          res.callback();
+          res.json(req.callback());
         }
       });
     }
@@ -67,7 +67,7 @@ exports.createBalanceReceipt = function(req, res, next) {
   const locals = {
     name: req.user.firstName,
     subject: "Balance Update",
-    balance: req.user.balance,
+    balance: req.user.balance.toFixed(2),
     id: req.user._id
   };
 
@@ -76,7 +76,7 @@ exports.createBalanceReceipt = function(req, res, next) {
     .then(function(res) {
       req.mailOptions.html = res;
       req.callback = function() {
-        return res.json(req.user);
+        return req.user;
       };
       next();
     })
