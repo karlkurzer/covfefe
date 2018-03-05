@@ -75,10 +75,9 @@ exports.update = function(req, res, next) {
         message: getErrorMessage(err)
       });
     } else {
-      // Send a JSON representation of the user
+      // Call the next middleware
       req.user = user;
       next();
-      // res.json(user);
     }
   });
 };

@@ -80,8 +80,8 @@ angular.module('users').controller('UsersController', ['$scope', '$routeParams',
 
         // Create a new controller method for updating a single user
         $scope.update = function(deposit) {
-            if(!isNaN(parseInt(deposit))) {
-                $scope.user.balance += parseInt(deposit);
+            if(!isNaN(parseFloat(deposit))) {
+                $scope.user.balance += parseFloat(deposit);
             }
         	// Use the user '$update' method to send an appropriate PUT request
             $scope.user.$update(function(user) {
