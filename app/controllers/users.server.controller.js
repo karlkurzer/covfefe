@@ -57,7 +57,7 @@ exports.read = function(req, res) {
 };
 
 // Create a new controller method that updates an existing user
-exports.update = function(req, res) {
+exports.update = function(req, res, next) {
   // Get the user from the 'request' object
   var user = req.user;
 
@@ -75,8 +75,9 @@ exports.update = function(req, res) {
         message: getErrorMessage(err)
       });
     } else {
-      // Send a JSON representation of the user
-      res.json(user);
+      // Call the next middleware
+      req.user = user;
+      next();
     }
   });
 };
