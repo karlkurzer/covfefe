@@ -12,6 +12,15 @@
   padding-left: 0;
 }
 
+.well > p {
+  line-height: 1.8;
+}
+
+.well-default {
+  background-color: #fff;
+  color: #000;
+}
+
 .well-success {
   background-color: #5cb85c;
   color: #fff;

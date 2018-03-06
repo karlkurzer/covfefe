@@ -1,7 +1,7 @@
 <!-- The list users view -->
 <div data-ng-controller="UsersController" data-ng-init="find()">
 	<h1>Bottom of the List
-<mark data-ng-show="currentOrder.nameFilter.fullName">{{currentOrder.nameFilter.fullName}}</mark>
+		<mark data-ng-show="currentOrder.nameFilter.fullName">{{currentOrder.nameFilter.fullName}}</mark>
 	</h1>
 	<table class="table table-condensed table-hover" style="cursor: pointer;">
 		<thead>
@@ -13,22 +13,16 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr style="cursor: pointer;"
-			data-ng-if="!authentication.user.admin"
-			data-ng-repeat="user in users
+			<tr style="cursor: pointer;" data-ng-if="!authentication.user.admin" data-ng-repeat="user in users
 			| filter: currentOrder.nameFilter
 			| orderBy: 'balance'
-			| limitTo: 6"
-			data-ng-class="{'info': userSelection.userIndex == $index}"
-			data-ng-click="selectForOrder(user,$index);">
+			| limitTo: 6" data-ng-class="{'info': userSelection.userIndex == $index}" data-ng-click="selectForOrder(user,$index);">
 				<td>{{ user.fullName }}</td>
 				<td>{{ user.balance | currency }}</td>
 			</tr>
 		</tbody>
 		<tbody>
-			<tr style="cursor: pointer;"
-			data-ng-if="authentication.user.admin"
-			data-ng-repeat="user in users
+			<tr style="cursor: pointer;" data-ng-if="authentication.user.admin" data-ng-repeat="user in users
 			| filter: currentOrder.nameFilter
 			| orderBy: 'balance'
 			| limitTo: 6">
@@ -40,5 +34,8 @@
 			</tr>
 		</tbody>
 	</table>
+	<covfefe-info data-ng-show="(users | filter: currentOrder.nameFilter).length == 0" well-class="well-warning">
+		<p>Not part of <strong>covfefe</strong> yet :-( ? Get in touch with Betül or Lingqing to sign up.</p>
+	</covfefe-info>
 </div>
 </div>
