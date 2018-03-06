@@ -92,6 +92,9 @@ angular.module("statistics").controller("StatisticsController", [
         case "frequency":
           $scope.getOrderFrequency();
           break;
+        case "consumption":
+          $scope.getOrderAverage();
+          break;
         case "stock":
           $scope.getItemStock();
           break;
@@ -119,6 +122,31 @@ angular.module("statistics").controller("StatisticsController", [
             $scope.chartLabels.push($scope.data[index]._id + ":00");
           }
           $scope.colors = $scope.colorsFrequency;
+        },
+        function(res) {
+          console.log(res);
+        }
+      );
+    };
+
+    $scope.getOrderAverage = function() {
+      var data = {
+        data: undefined
+      };
+
+      var config = {
+        params: data
+      };
+
+      $http.get("/api/statistics/orders/average", config).then(
+        function(res) {
+          $scope.data = res.data.orders;
+          $scope.chartOptions.title.text = "Weekly Consumption by Drink";
+          for (let index = 0; index < $scope.data.length; index++) {
+            $scope.chartData.push($scope.data[index].total);
+            $scope.chartLabels.push($scope.data[index]._id);
+          }
+          $scope.colors = $scope.colorsDistribution;
         },
         function(res) {
           console.log(res);
@@ -169,6 +197,22 @@ angular.module("statistics").controller("StatisticsController", [
             $scope.chartLabels.push($scope.data[index]._id);
           }
           $scope.colors = $scope.colorsStock;
+          $http.get("/api/statistics/orders/average", config).then(
+            function(res) {
+              $scope.items = res.data.orders;
+              let min = 1000;
+              $scope.items.forEach(item => {
+                var stockItem = $scope.data.find(x => x._id === item._id);
+                if (stockItem.total/item.total <= min) {
+                  min = stockItem.total/item.total
+                  $scope.buffer = { name: stockItem._id, weeks: stockItem.total/item.total };
+                }
+              });
+            },
+            function(res) {
+              console.log(res);
+            }
+          );
         },
         function(res) {
           console.log(res);

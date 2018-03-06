@@ -1,7 +1,7 @@
 //#########################################################
 //      COVFEFE HTML DIRECTIVES
 //#########################################################
-angular.module("example").directive("covfefeInfo", function() {
+mainApplicationModule.directive("covfefeInfo", function() {
   return {
     restrict: "E",
     transclude: true,
