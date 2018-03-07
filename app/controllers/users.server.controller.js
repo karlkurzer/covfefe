@@ -3,6 +3,7 @@
 
 // Load the module dependencies
 var User = require("mongoose").model("User"),
+  Deposit = require("mongoose").model("Deposit"),
   passport = require("passport");
 
 // Create a new error handling controller method
