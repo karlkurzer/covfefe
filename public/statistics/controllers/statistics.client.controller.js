@@ -69,7 +69,7 @@ angular.module("statistics").controller("StatisticsController", [
         yAxes: [
           {
             ticks: {
-              fontSize: 25,
+              fontSize: 24,
               min: 0
             }
           }
@@ -77,7 +77,7 @@ angular.module("statistics").controller("StatisticsController", [
         xAxes: [
           {
             ticks: {
-              fontSize: 25
+              fontSize: 24
             }
           }
         ]
