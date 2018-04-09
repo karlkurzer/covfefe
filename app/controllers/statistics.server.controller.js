@@ -21,7 +21,7 @@ var getErrorMessage = function(err) {
 exports.ordersFrequency = function(req, res) {
   Order.aggregate(
     { $match: { status: { $ne: "deleted" } } },
-    { $project: { h: { $hour: "$createdAt" } } },
+    { $project: { h: { $hour: { date: "$createdAt", timezone: "Europe/Berlin"} } } },
     { $group: { _id: "$h", total: { $sum: 1 } } },
     { $sort: { _id: 1 } }
   ).exec(function(err, orders) {
