@@ -18,7 +18,7 @@ module.exports = function(app) {
       users.requiresLogin,
       users.requiresAdmin,
       users.update,
-      emails.createBalanceReceipt,
+      emails.depositNotification,
       emails.sendEmail
     )
     .delete(users.requiresLogin, users.requiresAdmin, users.delete);
