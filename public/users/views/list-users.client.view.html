@@ -13,7 +13,16 @@
 				<th data-ng-if="authentication.user.admin">Update</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody data-ng-if="!currentOrder.nameFilter.fullName">
+			<tr style="cursor: pointer;" data-ng-if="!authentication.user.admin" data-ng-repeat="user in users
+			| filter: currentOrder.nameFilter
+			| orderBy: 'balance'
+			| limitTo: 9" data-ng-class="{'info': userSelection.userIndex == $index}" data-ng-click="selectForOrder(user,$index);">
+				<td>{{ user.fullName }}</td>
+				<td>{{ user.balance | currency }}</td>
+			</tr>
+		</tbody>
+		<tbody data-ng-if="currentOrder.nameFilter.fullName">
 			<tr style="cursor: pointer;" data-ng-if="!authentication.user.admin" data-ng-repeat="user in users
 			| filter: currentOrder.nameFilter
 			| orderBy: '-balance'
