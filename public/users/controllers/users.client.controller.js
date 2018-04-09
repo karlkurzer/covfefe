@@ -20,9 +20,11 @@ angular.module('users').controller('UsersController', ['$scope', '$routeParams',
         };
 
         $scope.selectForOrder = function(user, index) {
-            $scope.userSelection.userIndex = index;
-            $scope.currentOrder.creator = user;
-            $scope.currentOrder.step = 2;
+            if ($scope.currentOrder.nameFilter.fullName.length > 0) {
+                $scope.userSelection.userIndex = index;
+                $scope.currentOrder.creator = user;
+                $scope.currentOrder.step = 2;
+            }
         }
 
         $scope.addLetter = function(letter) {
@@ -32,7 +34,7 @@ angular.module('users').controller('UsersController', ['$scope', '$routeParams',
 
         $scope.removeLetter = function() {
             $scope.currentOrder.nameFilter.fullName = $scope.currentOrder.nameFilter.fullName.slice(0, -1);
-            if ($scope.currentOrder.nameFilter.fullName) {
+            if ($scope.currentOrder.nameFilter.fullName.length == 0) {
                 $scope.currentOrder.step = 0;
             }
         }
