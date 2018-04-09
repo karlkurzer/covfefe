@@ -5,8 +5,8 @@
 var mongoose = require("mongoose"),
   Schema = mongoose.Schema;
 
-// Define a new 'OrderSchema'
-var OrderSchema = new Schema(
+// Define a new 'DepositSchema'
+var DepositSchema = new Schema(
   {
     depositor: {
       type: Schema.ObjectId,
