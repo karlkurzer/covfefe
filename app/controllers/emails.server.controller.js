@@ -46,6 +46,7 @@ exports.sendEmail = function(req, res) {
       transporter.sendMail(req.mailOptions, (error, info) => {
         if (error) {
           console.log("sendMail: " + JSON.stringify(error));
+          res.json(req.callback());
         } else {
           console.log("sendMail: " + JSON.stringify(info));
           res.json(req.callback());

@@ -10,6 +10,7 @@ angular.module('users').controller('UsersController', ['$scope', '$routeParams',
         $scope.currentOrder.nameFilter = {fullName: ""};
         $scope.userSelection = UserSelection;
         $scope.userStats = UserStats;
+        $scope.loading = false;
 
         $scope.viewOne = function (user) {
             $location.path('users/' + user._id);
@@ -82,6 +83,7 @@ angular.module('users').controller('UsersController', ['$scope', '$routeParams',
 
         // Create a new controller method for updating a single user
         $scope.update = function(deposit) {
+            $scope.loading = true;
             if(!isNaN(parseFloat(deposit))) {
                 $scope.user.balance += parseFloat(deposit.replace(',', '.'));
             }
@@ -89,9 +91,11 @@ angular.module('users').controller('UsersController', ['$scope', '$routeParams',
             $scope.user.$update(function(user) {
                 // If an user was updated successfully, redirect the user to the user's page
                 $location.path('users/' + $scope.user._id);
+                $scope.loading = !true;
             }, function(errorResponse) {
             	// Otherwise, present the user with the error message
                 $scope.error = errorResponse.data.message;
+                $scope.loading = !true;
             });
         };
 

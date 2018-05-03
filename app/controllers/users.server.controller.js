@@ -197,7 +197,6 @@ exports.signup = function(req, res, next) {
         // Redirect the user back to the signup page
         return res.redirect("/signup");
       }
-      console.log("SUCCESS:");
       // If the user was created successfully use the Passport 'login' method to login
       req.login(user, function(err) {
         // If a login error occurs move to the next middleware

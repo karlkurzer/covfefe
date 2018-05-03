@@ -16,7 +16,8 @@
 			<input data-ng-model="deposit" type="text" class="form-control" id="deposit">
 		</div>
 		<div>
-			<button class="btn-lg btn-primary btn-block" data-ng-click="update(deposit);">update</button>
+			<button data-ng-show="!loading" class="btn-lg btn-primary btn-block" data-ng-click="update(deposit);">update</button>
+			<button data-ng-show="loading" class="btn-lg btn-primary btn-block"><span class="glyphicon glyphicon-repeat normal-right-spinner"></span></button>
 			<a href="#!/">
 				<button class="btn-lg btn-block">back</button>
 			</a>
