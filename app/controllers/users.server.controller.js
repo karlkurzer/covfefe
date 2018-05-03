@@ -61,6 +61,8 @@ exports.read = function(req, res) {
 exports.update = function(req, res, next) {
   // Get the user from the 'request' object
   var user = req.user;
+  // Save the deposit on the 'request' object
+  req.body.deposit = req.body.balance - user.balance;
 
   // Update the user fields
   user.firstName = req.body.firstName;
@@ -114,29 +116,6 @@ exports.userByID = function(req, res, next, id) {
 
     // Call the next middleware
     next();
-  });
-};
-
-// Create a new controller method that updates an existing user
-exports.updateBalance = function(req, res) {
-  // Get the user from the 'request' object
-  var user = req.user;
-
-  // Update the user fields
-  user.firstName = req.body.firstName;
-  user.balance = req.body.balance;
-
-  // Try saving the updated user
-  User.update({ _id: user._id }, { balance: user.balance }, function(err) {
-    if (err) {
-      // If an error occurs send the error message
-      return res.status(400).send({
-        message: getErrorMessage(err)
-      });
-    } else {
-      // Send a JSON representation of the user
-      res.json(user);
-    }
   });
 };
 
