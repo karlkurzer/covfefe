@@ -22,14 +22,23 @@ module.exports = function(grunt) {
           livereload: true
         }
       }
+    },
+    concurrent: {
+      dev: {
+        tasks: [["nodemon"], "watch"],
+        options: {
+          logConcurrentOutput: true
+        }
+      }
     }
   });
 
-  // Load the plugin that provides the "watch" task.
+  // Load the grunt plugins
+  grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks("grunt-nodemon");
   grunt.loadNpmTasks("grunt-contrib-watch");
 
   // Default task(s).
-  grunt.registerTask('default', ['nodemon', 'watch']);
+  grunt.registerTask('default', ['concurrent:dev']);
 
 };
