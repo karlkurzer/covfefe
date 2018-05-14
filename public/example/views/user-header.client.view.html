@@ -1,0 +1,7 @@
+<h1 style="display: inline;">
+    {{ currentOrder.creator.fullName }}
+</h1>
+<span>Balance {{currentOrder.creator.balance | currency}}&nbsp;|</span>
+<span class="text-center" data-ng-controller="UsersController" data-ng-click="viewOne(currentOrder.creator);">Details
+    <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+</span>

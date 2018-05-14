@@ -5,20 +5,15 @@
 
 <div class="row" data-ng-controller="OrdersController">
     <div data-ng-if="online">
-        <div class="col-md-12" data-ng-if="currentOrder.creator._id">
-            <h1 style="display: inline;">
-                {{ currentOrder.creator.fullName }}
-            </h1>
-            <span>Balance {{currentOrder.creator.balance | currency}}&nbsp;|</span>
-            <span class="text-center" data-ng-controller="UsersController" data-ng-click="viewOne(currentOrder.creator);">Details
-                <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
-            </span>
-        </div>
 
-        <div class="col-md-6 col-s-6 col-xs-12" data-ng-if="!currentOrder.creator._id" data-ng-include="'/../../example/views/name-filter.client.view.html'"></div>
-
-        <div class="col-md-6 col-s-6 col-xs-12" data-ng-if="!currentOrder.creator._id" data-ng-include="'/../../users/views/list-users.client.view.html'"></div>
-
+        <!-- no user selected -->
+        <div class="col-md-8 col-s-8 col-xs-12" data-ng-if="!currentOrder.creator._id" data-ng-include="'/../../example/views/name-filter.client.view.html'"></div>
+        
+        <div class="col-md-4 col-s-4 col-xs-12" data-ng-if="!currentOrder.creator._id" data-ng-include="'/../../users/views/list-users.client.view.html'"></div>
+        
+        <!-- user selected -->
+        <div class="col-md-12 col-s-12 col-xs-12" data-ng-if="currentOrder.creator._id" data-ng-include="'/../../example/views/user-header.client.view.html'"></div>
+        
         <div class="col-md-4 col-s-6 col-xs-12" data-ng-if="currentOrder.creator._id" data-ng-include="'/../../items/views/list-items.client.view.html'"></div>
 
         <div class="col-md-4 col-s-6 col-xs-12" data-ng-if="currentOrder.creator._id" data-ng-include="'/../../orders/views/current-order.client.view.html'"></div>
