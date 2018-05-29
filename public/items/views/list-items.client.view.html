@@ -4,9 +4,7 @@
 	<table class="table table-condensed table-hover">
 		<thead>
 			<tr>
-				<!-- <th>Rank</th> -->
 				<th>Price</th>
-				<th> </th>
 				<th>Name</th>
 			</tr>
 		</thead>
@@ -15,7 +13,6 @@
 			data-ng-repeat="item in items | orderBy: 'price'"
 			data-ng-click="addToOrder(item);">
 				<td>{{ item.price | currency}}</td>
-				<td><i class="fas fa-coffee"></i></td>
 				<td>{{ item.name }}</td>
 			</tr>
 		</tbody>
