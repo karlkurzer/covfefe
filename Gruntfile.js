@@ -17,7 +17,7 @@ module.exports = function(grunt) {
     },
     watch: {
       css: {
-        files: ['public/assets/css/custom.css'],
+        files: ['public/assets/css/custom.css','public/**/*.html'],
         options: {
           livereload: true
         }
