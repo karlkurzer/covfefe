@@ -8,8 +8,7 @@
 
     <div data-ng-show="online" class="well well-sm text-center" data-ng-class="{'well-success': currentOrder.step == 4, 'well-danger': currentOrder.step == 5}">
         <ol class="list-inline">
-            <li data-ng-show="currentOrder.step == 0">1. Filter your name
-                <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+            <li data-ng-show="currentOrder.step == 0">{{currentNews}}</span>
             </li>
             <li data-ng-show="currentOrder.step == 1">2. Select your name
                 <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
