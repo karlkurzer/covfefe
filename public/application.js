@@ -23,6 +23,7 @@ mainApplicationModule.config([
   "ChartJsProvider",
   function($locationProvider, ChartJsProvider) {
     $locationProvider.hashPrefix("!");
+    ChartJsProvider.setOptions("global", { defaultFontFamily: "Nunito" });
   }
 ]);
 
