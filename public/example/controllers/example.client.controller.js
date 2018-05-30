@@ -11,12 +11,17 @@ angular.module('example').controller('ExampleController', ['$scope', '$http', '$
 		$http({ method: 'GET', url: 'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fwww.blogger.com%2Ffeeds%2F746298260979647434%2Fposts%2Fdefault' }).
 			then(function (response) {
 				$scope.status = response.status;
+				var newsId = 0;
+				var newsHtml;
 				for (var i = 0; i < response.data.items.length; i++) {
-					if (response.data.items[i].title && response.data.items[i].title.startsWith("Newsticker")) {
-						var newsHtml = response.data.items[i].description;
-						$scope.news = newsHtml.match(/\+\+\+.*?\+\+\+/g);
+					if (response.data.items[i].title
+						&& response.data.items[i].title.startsWith("Newsticker")
+						&& newsId < response.data.items[i].title.match(/\d+/)) {
+						newsId = response.data.items[i].title.match(/\d+/);
+						newsHtml = response.data.items[i].description;
 					}
 				}
+				$scope.news = newsHtml.match(/\+\+\+.*?\+\+\+/g);
 				$scope.currentNews = $scope.news[Math.floor(Math.random() * $scope.news.length)];
 			}, function (response) {
 				$scope.data = response.data || 'Request failed';
