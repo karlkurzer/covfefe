@@ -1,5 +1,5 @@
 ## covfefe
-**covfefe** is a simple balance tracking tool for managing purchases of any items by users
+**covfefe** is a simple balance tracking tool for managing purchases of any items by users. Check out the [Demo](https://covfefe.kurzer.de/#!/) to get a feel for it.
 
 ### General Features
 * sign-up/sign-in (sign-in is only required for admins)
