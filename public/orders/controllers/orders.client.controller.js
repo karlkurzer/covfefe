@@ -67,7 +67,7 @@ angular.module("orders").controller("OrdersController", [
         total: $scope.currentOrder.total
       });
 
-      $scope.disableOder = true;
+      $scope.currentOrder.items = [];
 
       // Use the order '$save' method to send an appropriate POST request
       order.$save(
@@ -83,14 +83,12 @@ angular.module("orders").controller("OrdersController", [
           $timeout(function() {
             $scope.reset();
           }, 3000);
-          $scope.disableOder = false;
           // $scope.find(response.creator);
           // $location.path('orders/' + response._id);
         },
         function(errorResponse) {
           // Otherwise, present the user with the error message
           $scope.error = errorResponse.data.message;
-          $scope.disableOder = false;
         }
       );
     };
