@@ -68,6 +68,7 @@ angular.module("orders").controller("OrdersController", [
       });
 
       $scope.currentOrder.items = [];
+      $scope.currentOrder.total = 0;
 
       // Use the order '$save' method to send an appropriate POST request
       order.$save(
