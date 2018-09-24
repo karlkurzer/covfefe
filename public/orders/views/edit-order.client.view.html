@@ -18,6 +18,10 @@
 						<span data-ng-click="removeFromOrder($index);" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 					</td>
 				</tr>
+				<tr data-ng-show="order.rebate" class="info">
+						<td> {{ order.items.length*order.rebatePerItem | currency}}</td>
+						<td>Rebate</td>
+				</tr>
 			</tbody>
 			<tfoot>
 				<tr class="success">

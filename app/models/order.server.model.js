@@ -24,6 +24,15 @@ var OrderSchema = new Schema(
       default: 0,
       required: true
     },
+    rebate: {
+      type: Boolean,
+      required: true
+    },
+    rebatePerItem: {
+      type: Number,
+      default: 0,
+      required: true
+    },
     status: {
       type: String,
       default: "created",

@@ -16,6 +16,10 @@
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </td>
             </tr>
+            <tr data-ng-show="currentOrder.rebate" class="info">
+                <td> {{ currentOrder.items.length*currentOrder.rebatePerItem | currency}}</td>
+                <td>Rebate</td>
+            </tr>
         </tbody>
         <tfoot>
             <tr data-ng-show="currentOrder.creator.balance > currentOrder.total" class="success">

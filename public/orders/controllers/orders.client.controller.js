@@ -42,12 +42,20 @@ angular.module("orders").controller("OrdersController", [
 
     $scope.removeFromOrder = function(index) {
       var item = $scope.order.items.splice(index, 1);
-      $scope.order.total -= item[0].price;
+      if ($scope.order.rebate === true) {
+        $scope.order.total -= item[0].price - $scope.order.rebatePerItem; 
+      } else {
+        $scope.order.total -= item[0].price;
+      }
     };
 
     $scope.removeFromCurrentOrder = function(index) {
       var item = $scope.currentOrder.items.splice(index, 1);
-      $scope.currentOrder.total -= item[0].price;
+      if ($scope.currentOrder.rebate === true) {
+        $scope.currentOrder.total -= item[0].price - $scope.currentOrder.rebatePerItem; 
+      } else {
+        $scope.currentOrder.total -= item[0].price;
+      }
       if (!$scope.currentOrder.items.length) {
         $scope.currentOrder.step = 2;
       }
@@ -64,7 +72,9 @@ angular.module("orders").controller("OrdersController", [
       var order = new Orders({
         items: $scope.currentOrder.items,
         creator: $scope.currentOrder.creator._id,
-        total: $scope.currentOrder.total
+        total: $scope.currentOrder.total,
+        rebate: $scope.currentOrder.rebate,
+        rebatePerItem: $scope.currentOrder.rebatePerItem
       });
 
       $scope.currentOrder.items = [];
