@@ -11,7 +11,7 @@
 			<label for="userEmail">email</label>
 			<p data-ng-bind="user.email" type="text" class="form-control" id="userEmail" disabled></p>
 			<label for="balance">balance</label>
-			<p data-ng-bind="user.balance" type="text" class="form-control" id="balance" disabled></p>
+			<p data-ng-bind="user.balance | currency : EUR : 2" type="text" class="form-control" id="balance" disabled></p>
 		</div>
 		<div>
 			<button data-ng-if="authentication.user.admin" class="btn-lg btn-primary btn-block" data-ng-click="editOne(user);">edit</button>

@@ -12,7 +12,10 @@
 	<link rel="shortcut icon" href="assets/images/icon/favicon.ico">
 	<link rel="icon" type="image/png" sizes="32x32" href="assets/images/icon/favicon-32x32.png">
 	<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/lib/font-awesome/web-fonts-with-css/css/fontawesome-all.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> 
 	<link rel="stylesheet" href="/assets/css/custom.css">
+	
 </head>
 
 <body>
@@ -38,16 +41,19 @@
 						<li>
 							<a href="/#!/">Home</a>
 						</li>
-						<li>
+						<!-- <li>
 							<a href="/#!/orders">Orders</a>
-						</li>
+						</li> -->
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Statistics
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
-								<li>
+								<!-- <li>
 									<a href="/#!/statistics/?query=stock">Stock</a>
+								</li> -->
+								<li>
+									<a href="/#!/statistics/?query=consumption">Consumption</a>
 								</li>
 								<li>
 									<a href="/#!/statistics/?query=frequency">Frequency</a>
@@ -133,6 +139,9 @@
 
 	<!-- Bootstrap AngularJS application -->
 	<script type="text/javascript" src="/application.js"></script>
+	<!-- Load Custom Directives -->
+	<script type="text/javascript" src="/example/directives/description.client.directive.js"></script>
+	<script src="//localhost:35729/livereload.js"></script>
 </body>
 
 </html>

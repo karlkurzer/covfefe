@@ -3,6 +3,7 @@
 
 // Load the module dependencies
 var users = require("../../app/controllers/users.server.controller"),
+  deposits = require("../../app/controllers/deposits.server.controller"),
   emails = require("../../app/controllers/emails.server.controller"),
   passport = require("passport");
 
@@ -18,7 +19,8 @@ module.exports = function(app) {
       users.requiresLogin,
       users.requiresAdmin,
       users.update,
-      emails.createBalanceReceipt,
+      deposits.create,
+      emails.depositNotification,
       emails.sendEmail
     )
     .delete(users.requiresLogin, users.requiresAdmin, users.delete);

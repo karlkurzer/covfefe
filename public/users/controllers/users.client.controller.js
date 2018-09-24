@@ -10,6 +10,7 @@ angular.module('users').controller('UsersController', ['$scope', '$routeParams',
         $scope.currentOrder.nameFilter = {fullName: ""};
         $scope.userSelection = UserSelection;
         $scope.userStats = UserStats;
+        $scope.loading = false;
 
         $scope.viewOne = function (user) {
             $location.path('users/' + user._id);
@@ -20,9 +21,11 @@ angular.module('users').controller('UsersController', ['$scope', '$routeParams',
         };
 
         $scope.selectForOrder = function(user, index) {
-            $scope.userSelection.userIndex = index;
-            $scope.currentOrder.creator = user;
-            $scope.currentOrder.step = 2;
+            if ($scope.currentOrder.nameFilter.fullName.length > 0) {
+                $scope.userSelection.userIndex = index;
+                $scope.currentOrder.creator = user;
+                $scope.currentOrder.step = 2;
+            }
         }
 
         $scope.addLetter = function(letter) {
@@ -32,7 +35,7 @@ angular.module('users').controller('UsersController', ['$scope', '$routeParams',
 
         $scope.removeLetter = function() {
             $scope.currentOrder.nameFilter.fullName = $scope.currentOrder.nameFilter.fullName.slice(0, -1);
-            if ($scope.currentOrder.nameFilter.fullName) {
+            if ($scope.currentOrder.nameFilter.fullName.length == 0) {
                 $scope.currentOrder.step = 0;
             }
         }
@@ -80,16 +83,19 @@ angular.module('users').controller('UsersController', ['$scope', '$routeParams',
 
         // Create a new controller method for updating a single user
         $scope.update = function(deposit) {
+            $scope.loading = true;
             if(!isNaN(parseFloat(deposit))) {
-                $scope.user.balance += parseFloat(deposit);
+                $scope.user.balance += parseFloat(deposit.replace(',', '.'));
             }
         	// Use the user '$update' method to send an appropriate PUT request
             $scope.user.$update(function(user) {
                 // If an user was updated successfully, redirect the user to the user's page
                 $location.path('users/' + $scope.user._id);
+                $scope.loading = !true;
             }, function(errorResponse) {
             	// Otherwise, present the user with the error message
                 $scope.error = errorResponse.data.message;
+                $scope.loading = !true;
             });
         };
 

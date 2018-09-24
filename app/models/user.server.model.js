@@ -4,7 +4,10 @@
 // Load the module dependencies
 var mongoose = require('mongoose'),
 	crypto = require('crypto'),
+	config = require('../../config/config'),
 	Schema = mongoose.Schema;
+
+	var emailRegex = new RegExp(config.emailDomain);
 
 // Define a new 'UserSchema'
 var UserSchema = new Schema({
@@ -17,7 +20,7 @@ var UserSchema = new Schema({
 	email: {
 		type: String,
 		// Validate the email format
-		match: [/.+\@.+\..+/, "Please fill a valid email address"],
+		match: [emailRegex, "Please fill a valid email address ending with: " + config.domain],
 		unique: true,
 		// Validate 'email' value existance
 		required: 'Email is required',

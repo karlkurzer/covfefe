@@ -324,13 +324,11 @@
 
                       <div align="center" class="img-container center  autowidth  " style="padding-right: 0px;  padding-left: 0px;">
                         <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px;line-height:0px;"><td style="padding-right: 0px; padding-left: 0px;" align="center"><![endif]-->
-                        <img class="center  autowidth " align="center" border="0" src="http://ids-services.fzi.de/assets/images/email/covfefe.png"
+                        <img class="center  autowidth " align="center" border="0" src="https://raw.githubusercontent.com/karlkurzer/covfefe/master/public/assets/images/email/covfefe.png"
                           alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: 0;height: auto;float: none;width: 50%;max-width: 125px"
                           width="125">
                         <!--[if mso]></td></tr></table><![endif]-->
                       </div>
-
-
 
                       <div class="">
                         <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;"><![endif]-->
@@ -364,7 +362,6 @@
                     <div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent; padding-top:0px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
                       <!--<![endif]-->
 
-
                       <div class="">
                         <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;"><![endif]-->
                         <div style="line-height:120%;color:#0D0D0D;font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
@@ -386,23 +383,27 @@
                         <!--[if mso]></td></tr></table><![endif]-->
                       </div>
 
-
                       <div align="center" class="img-container center  autowidth  " style="padding-right: 0px;  padding-left: 0px;">
                         <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px;line-height:0px;"><td style="padding-right: 0px; padding-left: 0px;" align="center"><![endif]-->
-                        <img class="center  autowidth " align="center" border="0" src="http://ids-services.fzi.de/assets/images/email/divider.png"
+                        <img class="center  autowidth " align="center" border="0" src="https://raw.githubusercontent.com/karlkurzer/covfefe/master/public/assets/images/email/divider.png"
                           alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: 0;height: auto;float: none;width: 100%;max-width: 316px"
                           width="316">
                         <!--[if mso]></td></tr></table><![endif]-->
                       </div>
 
-
-
                       <div class="">
                         <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;"><![endif]-->
                         <div style="line-height:150%;color:#555555;font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
                           <div style="font-size:12px;line-height:18px;color:#555555;font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;">
-                            <p style="margin: 0;font-size: 14px;line-height: 21px;text-align: center">Thanks for topping up your balance!
-                              <br>Your new balance is:
+                           
+                            <p style="margin: 0;font-size: 14px;line-height: 21px;text-align: center">
+                              <% if(balance > 0){ %>
+                                Thanks for keeping a positive balance!
+                              <% } else{ %>  
+                                You have a negative balance!
+                                <br>Please make a deposit as soon as possible, covfefe is prepaid.
+                              <% } %>
+                              <br>Your current balance is:
                               <span style="color: #337ab7; font-size: 14px; line-height: 21px;">
                                 <strong>
                                   <%= balance %> EUR
@@ -415,20 +416,6 @@
                         <!--[if mso]></td></tr></table><![endif]-->
                       </div>
 
-
-                      <!-- <div class=""> -->
-                      <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 20px; padding-bottom: 10px;"><![endif]-->
-                      <!-- <div style="line-height:150%;color:#0D0D0D;font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; padding-right: 10px; padding-left: 10px; padding-top: 20px; padding-bottom: 10px;">
-                          <div style="font-size:12px;line-height:18px;color:#0D0D0D;font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;">
-                            <p style="margin: 0;font-size: 14px;line-height: 21px;text-align: center">TO FINISH SIGNING UP AND ACTIVATE YOUR ACCOUNT
-                              <br>YOU JUST NEED TO SET YOUR PASSWORD</p>
-                          </div>
-                        </div> -->
-                      <!--[if mso]></td></tr></table><![endif]-->
-                      <!-- </div> -->
-
-
-
                       <div align="center" class="button-container center " style="padding-right: 10px; padding-left: 10px; padding-top:25px; padding-bottom:10px;">
                         <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top:25px; padding-bottom:10px;" align="center"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="" style="height:46pt; v-text-anchor:middle; width:151pt;" arcsize="7%" strokecolor="#a8bf6f" fillcolor="#a8bf6f"><w:anchorlock/><v:textbox inset="0,0,0,0"><center style="color:#ffffff; font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; font-size:16px;"><![endif]-->
                         <div style="color: #ffffff; background-color: #337ab7; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; max-width: 202px; width: 172px;width: auto; border-top: 0px solid transparent; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif; text-align: center; mso-border-alt: none;">
@@ -438,9 +425,6 @@
                         </div>
                         <!--[if mso]></center></v:textbox></v:roundrect></td></tr></table><![endif]-->
                       </div>
-
-
-
 
                       <table border="0" cellpadding="0" cellspacing="0" width="100%" class="divider " style="border-collapse: collapse;table-layout: fixed;border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;min-width: 100%;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%">
                         <tbody>

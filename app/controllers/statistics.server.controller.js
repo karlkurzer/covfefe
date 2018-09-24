@@ -21,9 +21,42 @@ var getErrorMessage = function(err) {
 exports.ordersFrequency = function(req, res) {
   Order.aggregate(
     { $match: { status: { $ne: "deleted" } } },
-    { $project: { h: { $hour: "$createdAt" } } },
+    { $project: { h: { $hour: { date: "$createdAt", timezone: "Europe/Berlin"} } } },
     { $group: { _id: "$h", total: { $sum: 1 } } },
     { $sort: { _id: 1 } }
+  ).exec(function(err, orders) {
+    if (err) {
+      // If an error occurs send the error message
+      return res.status(400).send({
+        message: getErrorMessage(err)
+      });
+    } else {
+      // Send a JSON representation of the order
+      res.json({ orders });
+    }
+  });
+};
+
+exports.ordersAverage = function(req, res) {
+  var now = new Date();
+  now.setDate(now.getDate() - 7);
+  
+  Order.aggregate(
+    { $match: {$and: [{ status: { $ne: "deleted" } }, { createdAt: { $gte: now } }] } },
+    { $unwind: "$items" },
+    {
+      $lookup: {
+        from: "items",
+        localField: "items",
+        foreignField: "_id",
+        as: "item"
+      }
+    },
+    { $match: { "item.countable": true } },
+    { $project: { name: "$item.name" } },
+    { $unwind: "$name" },
+    { $group: { _id: "$name", total: { $sum: 1 } } },
+    { $sort: { total: -1 } }
   ).exec(function(err, orders) {
     if (err) {
       // If an error occurs send the error message

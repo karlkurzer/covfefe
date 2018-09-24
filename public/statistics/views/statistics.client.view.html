@@ -1,3 +1,8 @@
 <div class="row" data-ng-controller="StatisticsController" data-ng-init="getData()">
+    <covfefe-info data-ng-show="buffer.weeks <= 2" well-class="well-danger">
+        <p>
+            <strong>covfefe</strong> predicts that {{buffer.name}} will run out in less than {{buffer.weeks.toFixed(1)}} weeks
+        </p>
+    </covfefe-info>
     <canvas class="chart chart-bar" chart-data="chartData" chart-labels="chartLabels" chart-colors="colors" chart-options="chartOptions"></canvas>
 </div>

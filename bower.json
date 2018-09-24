@@ -8,6 +8,7 @@
     "angular-chart.js": "~1.1.1",
     "bootstrap": "^3.3.7",
     "angular-i18n": "^1.6.8",
-    "jquery": "^3.3.1"
+    "jquery": "^3.3.1",
+    "font-awesome": "^5.0.12"
   }
 }
