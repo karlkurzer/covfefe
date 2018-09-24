@@ -30,9 +30,17 @@ angular.module('items').controller('ItemsController', ['$scope', '$routeParams',
         };
 
         $scope.addToOrder = function(item) {
+            // Checkif a user has been selected
             if ($scope.currentOrder.creator.hasOwnProperty('_id')) {
+                // If the user has a positive balance
+                if ($scope.currentOrder.creator.balance > 0) {
+                    $scope.currentOrder.rebate = true;
+                    $scope.currentOrder.total += item.price - $scope.currentOrder.rebatePerItem;
+                }
+                else {
+                    $scope.currentOrder.total += item.price;
+                }
                 $scope.currentOrder.items.push(item);
-                $scope.currentOrder.total += item.price;
                 $scope.currentOrder.step = 3;
             }
         };

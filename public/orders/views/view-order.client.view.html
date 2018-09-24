@@ -17,6 +17,10 @@
 					<td>{{ item.price | currency }}</td>
 					<td>{{ item.name }}</td>
 				</tr>
+				<tr data-ng-show="order.rebate" class="info">
+						<td> {{ order.items.length*order.rebatePerItem | currency}}</td>
+						<td>Rebate</td>
+				</tr>
 			</tbody>
 			<tfoot>
 				<tr class="success">
