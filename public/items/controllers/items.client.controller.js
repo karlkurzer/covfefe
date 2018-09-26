@@ -33,7 +33,7 @@ angular.module('items').controller('ItemsController', ['$scope', '$routeParams',
             // Checkif a user has been selected
             if ($scope.currentOrder.creator.hasOwnProperty('_id')) {
                 // If the user has a positive balance
-                if ($scope.currentOrder.creator.balance > 0) {
+                if ($scope.currentOrder.creator.balance > 0 || $scope.currentOrder.creator.rebate) {
                     $scope.currentOrder.rebate = true;
                     $scope.currentOrder.total += item.price - $scope.currentOrder.rebatePerItem;
                 }

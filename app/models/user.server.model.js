@@ -44,6 +44,10 @@ var UserSchema = new Schema({
 		type: Boolean,
 		default: false
 	},
+	rebate: {
+		type: Boolean,
+		default: false
+	},
 	provider: {
 		type: String,
 		// Validate 'provider' value existance
