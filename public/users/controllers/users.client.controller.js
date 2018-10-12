@@ -23,7 +23,10 @@ angular.module('users').controller('UsersController', ['$scope', '$routeParams',
         $scope.selectForOrder = function(user, index) {
             if ($scope.currentOrder.nameFilter.fullName.length > 0) {
                 $scope.userSelection.userIndex = index;
-                $scope.currentOrder.creator = user;
+                // $scope.currentOrder.creator = user;
+                $scope.currentOrder.creator = Users.get({
+                    userId: user.id
+                });
                 $scope.currentOrder.step = 2;
             }
         }
