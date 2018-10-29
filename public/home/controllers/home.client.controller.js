@@ -1,8 +1,8 @@
 // Invoke 'strict' JavaScript mode
 'use strict';
 
-// Create the 'example' controller
-angular.module('example').controller('ExampleController', ['$scope', '$http', '$timeout', '$interval', 'Authentication',
+// Create the 'home' controller
+angular.module('home').controller('HomeController', ['$scope', '$http', '$timeout', '$interval', 'Authentication',
 	function ($scope, $http, $timeout, $interval, Authentication) {
 		// Expose the authentication service
 		$scope.authentication = Authentication;

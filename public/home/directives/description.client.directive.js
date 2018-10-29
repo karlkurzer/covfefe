@@ -9,6 +9,6 @@ mainApplicationModule.directive("covfefeInfo", function() {
       text: "@",
       wellClass: "@"
     },
-    templateUrl: "example/directives/description.directive.template.html"
+    templateUrl: "home/directives/description.directive.template.html"
   };
 });
