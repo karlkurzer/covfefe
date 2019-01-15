@@ -57,6 +57,22 @@ exports.read = function(req, res) {
   res.json(req.user);
 };
 
+// Create a new controller method that toggles the auto add for an existing user
+exports.toggleAutoAdd = function(req, res) {
+  // Update the user balance
+  User.findByIdAndUpdate(req.user._id, { autoAdd: !req.user.autoAdd }, {new: true}, function(err, user) {
+    if (err) {
+      // If an error occurs send the error message
+      return res.status(400).send({
+        message: getErrorMessage(err)
+      });
+    } else {
+      // Send a JSON representation of the user
+      res.json(user);
+    }
+  });
+};
+
 // Create a new controller method that updates an existing user
 exports.update = function(req, res, next) {
   // Get the user from the 'request' object

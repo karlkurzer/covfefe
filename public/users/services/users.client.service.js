@@ -9,6 +9,10 @@ angular.module('users').factory('Users', ['$resource', function($resource) {
     }, {
         update: {
             method: 'PUT'
+        },
+        toggleAutoAdd: {
+            method: 'GET',
+            url: 'api/toggleAutoAdd/:userId'
         }
     });
 }]);

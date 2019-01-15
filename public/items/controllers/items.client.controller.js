@@ -65,11 +65,12 @@ angular.module('items').controller('ItemsController', ['$scope', '$routeParams',
 
         // Create a new controller method that automatically adds the previously ordered item to a new order 
         $scope.init = function () {
+            // console.log($scope.currentOrder.creator.autoAddItem);
             Items.query().$promise.then(function(items) {
                 $scope.items = items;
-                if($scope.currentOrder.creator.autoAdd) {
+                if($scope.currentOrder.creator.autoAdd && $scope.currentOrder.creator.autoAddItem) {
                     var item = $scope.items.find(item => {
-                        return item._id === $scope.currentOrder.creator.autoAdd
+                        return item._id === $scope.currentOrder.creator.autoAddItem
                       })                 
                     $scope.addToOrder(item);
                 }

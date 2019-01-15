@@ -84,6 +84,11 @@ angular.module('users').controller('UsersController', ['$scope', '$routeParams',
             });
         };
 
+        // Create a new controller method for toggeling auto add for a user
+        $scope.toggleAutoAdd = function () {
+            $scope.user.$toggleAutoAdd();
+        }
+
         // Create a new controller method for updating a single user
         $scope.update = function(deposit) {
             $scope.loading = true;

@@ -40,7 +40,7 @@ exports.create = function(req, res, next) {
           });
         } else {
           req.user.balance -= order.total;
-          req.user.autoAdd = order.items[0];
+          req.user.autoAddItem = order.items[0];
           req.items = doc.items;
           req.operation = "create";
           next();
@@ -149,7 +149,7 @@ exports.notDeleted = function(req, res, next) {
 // Create a new controller method that updates the user balance
 exports.updateUserBalance = function(req, res, next) {
   // Update the user balance
-  User.findByIdAndUpdate(req.user._id, { balance: req.user.balance, autoAdd: req.user.autoAdd }, function(
+  User.findByIdAndUpdate(req.user._id, { balance: req.user.balance, autoAddItem: req.user.autoAddItem }, function(
     err
   ) {
     if (err) {

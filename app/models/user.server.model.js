@@ -49,6 +49,10 @@ var UserSchema = new Schema({
 		default: false
 	},
 	autoAdd: {
+        type: Boolean,
+        default: false
+	},
+	autoAddItem: {
         type: Schema.ObjectId,
         ref: "Item"
 	},

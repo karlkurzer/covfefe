@@ -24,6 +24,9 @@ module.exports = function(app) {
       emails.sendEmail
     )
     .delete(users.requiresLogin, users.requiresAdmin, users.delete);
+    
+  app.route('/api/toggleAutoAdd/:userId')
+    .get(users.toggleAutoAdd);
 
   // Set up the 'userId' parameter middleware
   app.param("userId", users.userByID);
