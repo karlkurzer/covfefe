@@ -1,3 +1,4 @@
 config/env/development.js
 node_modules/
 public/lib/
+public/how_to_covfefe.*
