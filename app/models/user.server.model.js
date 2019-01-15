@@ -48,6 +48,10 @@ var UserSchema = new Schema({
 		type: Boolean,
 		default: false
 	},
+	autoAdd: {
+        type: Schema.ObjectId,
+        ref: "Item"
+	},
 	provider: {
 		type: String,
 		// Validate 'provider' value existance

@@ -63,6 +63,19 @@ angular.module('items').controller('ItemsController', ['$scope', '$routeParams',
             });
         };
 
+        // Create a new controller method that automatically adds the previously ordered item to a new order 
+        $scope.init = function () {
+            Items.query().$promise.then(function(items) {
+                $scope.items = items;
+                if($scope.currentOrder.creator.autoAdd) {
+                    var item = $scope.items.find(item => {
+                        return item._id === $scope.currentOrder.creator.autoAdd
+                      })                 
+                    $scope.addToOrder(item);
+                }
+            });
+        }
+
         // Create a new controller method for retrieving a list of items
         $scope.find = function() {
         	// Use the item 'query' method to send an appropriate GET request
