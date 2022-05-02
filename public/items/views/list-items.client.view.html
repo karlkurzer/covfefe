@@ -1,0 +1,21 @@
+<!-- The list items view -->
+<div data-ng-controller="ItemsController" data-ng-init="init()">
+	<h1>Items</h1>
+	<table class="table table-condensed table-hover">
+		<thead>
+			<tr>
+				<th>Price</th>
+				<th>Name</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr style="cursor: pointer;"
+			data-ng-repeat="item in items | orderBy: 'price'"
+			data-ng-click="addToOrder(item);">
+				<td>{{ item.price | currency}}</td>
+				<td>{{ item.name }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</div>

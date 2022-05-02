@@ -1,0 +1,134 @@
+* {
+  font-size: 23px;
+  line-height: 2.3;
+  font-family: 'Nunito', sans-serif;
+}
+
+.btn-bold {
+  font-weight: bolder;
+}
+
+
+/* Name Letter Buttons */
+.btn-letters { 
+  color: #47270b; 
+  background-color: rgb(207, 200, 182);
+} 
+ 
+.btn-letters:hover, 
+.btn-letters:focus, 
+.btn-letters:active, 
+.btn-letters.active, 
+.open .dropdown-toggle.btn-letters { 
+  color: #75470B; 
+  background-color: rgb(189, 219, 231); 
+} 
+ 
+.btn-letters:active, 
+.btn-letters.active, 
+.open .dropdown-toggle.btn-letters { 
+  background-image: none; 
+} 
+ 
+.btn-letters.disabled, 
+.btn-letters[disabled], 
+fieldset[disabled] .btn-letters, 
+.btn-letters.disabled:hover, 
+.btn-letters[disabled]:hover, 
+fieldset[disabled] .btn-letters:hover, 
+.btn-letters.disabled:focus, 
+.btn-letters[disabled]:focus, 
+fieldset[disabled] .btn-letters:focus, 
+.btn-letters.disabled:active, 
+.btn-letters[disabled]:active, 
+fieldset[disabled] .btn-letters:active, 
+.btn-letters.disabled.active, 
+.btn-letters[disabled].active, 
+fieldset[disabled] .btn-letters.active { 
+  background-color: #E8D6AE; 
+  border-color: #0C74C4; 
+} 
+ 
+.btn-letters .badge { 
+  color: #E8D6AE; 
+  background-color: #75470B; 
+}
+/* Name Letter Button END */
+
+.padding-0 {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.padding-col-2px {
+  padding-right: 2px;
+  padding-left: 2px;
+}
+
+.padding-row-20px {
+  padding-top: 20px!important;
+  padding-bottom: 20px!important;
+}
+
+.well > p {
+  line-height: 1.8;
+}
+
+.well-default {
+  background-color: #fff;
+  color: #000;
+}
+
+.well-success {
+  background-color: #5cb85c;
+  color: #fff;
+}
+
+.well-warning {
+  background-color: #f0ad4e;
+  color: #fff;
+}
+
+.well-danger {
+  background-color: #d9534f;
+  color: #fff;
+}
+
+body {
+  padding-top: 70px;
+  background-color: rgb(248, 242, 233);
+  color: #47270b;
+}
+
+.glyphicon.normal-right-spinner {
+  -webkit-animation: glyphicon-spin-r 2s infinite linear;
+  animation: glyphicon-spin-r 2s infinite linear;
+}
+
+.glyphicon-1em{
+  font-size: 1em;
+}
+
+@-webkit-keyframes glyphicon-spin-r {
+  0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+  }
+
+  100% {
+      -webkit-transform: rotate(359deg);
+      transform: rotate(359deg);
+  }
+}
+
+@keyframes glyphicon-spin-r {
+  0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+  }
+
+  100% {
+      -webkit-transform: rotate(359deg);
+      transform: rotate(359deg);
+  }
+}

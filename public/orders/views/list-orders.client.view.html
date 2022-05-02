@@ -1,0 +1,21 @@
+<!-- The list orders view -->
+<div data-ng-controller="OrdersController" data-ng-init="find()">
+	<h1>Orders</h1>
+	<table class="table table-condensed table-hover">
+		<thead>
+			<tr>
+				<th>Date</th>
+				<th>Name</th>
+				<th>Total</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr data-ng-repeat="order in orders track by $index" data-ng-click="viewOne(order)" data-ng-class="{'warning': order.status === 'updated', 'danger': order.status === 'deleted'}">
+				<td>{{order.createdAt | date: 'short'}}</td>
+				<td>{{order.creator.fullName}}</td>
+				<td>{{order.total | currency}}</td>
+			</tr>
+			</a>
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,40 @@
+<!-- The list orders view -->
+<div>
+    <h1>Order</h1>
+    <!-- Show the editing buttons to the order creator -->
+    <table class="table table-condensed table-hover">
+        <thead>
+            <tr>
+                <th>Price</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-ng-repeat="item in currentOrder.items track by $index" data-ng-click="removeFromCurrentOrder($index)">
+                <td>{{ item.price | currency }}</td>
+                <td>{{ item.name }}&nbsp;
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </td>
+            </tr>
+            <tr data-ng-show="currentOrder.rebate" class="info">
+                <td> {{ currentOrder.items.length*currentOrder.rebatePerItem | currency}}</td>
+                <td>Rebate</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr data-ng-show="currentOrder.creator.balance > currentOrder.total" class="success">
+                <td>Total</td>
+                <td> {{ currentOrder.total | currency}}</td>
+            </tr>
+            <tr data-ng-hide="currentOrder.creator.balance > currentOrder.total" class="danger">
+                <td>Total</td>
+                <td> {{ currentOrder.total | currency}}</td>
+            </tr>
+        </tfoot>
+    </table>
+    <div>
+        <button data-ng-disabled="!currentOrder.items.length" class="btn-lg btn-primary btn-block" data-ng-click="create();">Order</button>
+        <div style="margin-top: 20px"></div>
+        <button class="btn-lg btn-block" data-ng-click="reset();">Back</button>
+    </div>
+</div>

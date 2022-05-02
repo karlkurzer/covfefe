@@ -1,0 +1,44 @@
+<div data-ng-controller="OrdersController">
+    <div class="text-center">
+        <p>
+            Hey! I am
+            <strong>covfefe</strong> the kitty of domain.TLD. Please use me every time you purchase a drink. It's easy :-) !
+        </p>
+    </div>
+
+    <div data-ng-show="online" class="well well-sm text-center" data-ng-class="{'well-success': currentOrder.step == 4, 'well-danger': currentOrder.step == 5}">
+        <ol class="list-inline">
+            <marquee data-ng-show="currentOrder.step == 0" scrolldelay=0 style="margin-bottom: -1em">{{currentNews}}
+            </marquee>
+            <li data-ng-show="currentOrder.step == 1">Select your name
+                <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+            </li>
+            <li data-ng-show="currentOrder.step == 2"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Select your drink
+                
+            </li>
+            <li data-ng-show="currentOrder.step == 3 && currentOrder.creator.autoAdd">Hit order
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> (Previously ordered item was added automatically)
+            </li>
+            <li data-ng-show="currentOrder.step == 3 && !currentOrder.creator.autoAdd">Hit order
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            </li>
+            <li data-ng-show="currentOrder.step == 4">Wohooo you made it :-) !
+            </li>
+            <li data-ng-show="currentOrder.step == 5">Don't you feel ashamed :-( ?
+            </li>
+        </ol>
+    </div>
+    <!-- NEGATIVE BALANCE -->
+    <covfefe-info data-ng-show="currentOrder.creator.balance < 0" well-class="well-danger">
+        <p>
+            You have a negative balance :-( , please top up your balance with the administrative staff.
+        </p>
+    </covfefe-info>
+    <!-- OFFLINE -->
+    <covfefe-info data-ng-hide="online" well-class="well-danger">
+        <p>
+            <strong>covfefe</strong> seems to be offline :-( , please check the internet connection, if the issue persists contact
+            karl@kurzer.de
+        </p>
+    </covfefe-info>
+</div>

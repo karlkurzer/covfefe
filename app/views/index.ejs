@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="description" content="covfefe is a simple balance tracking tool for managing purchases of any items by users.">
+	<meta name="author" content="Karl Kurzer">
+	<base href="/">
+
+	<title>
+		<%= title %>
+	</title>
+	<link rel="shortcut icon" href="assets/images/icon/favicon.ico">
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/images/icon/favicon-32x32.png">
+	<link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="lib/font-awesome/css/all.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> 
+	<link rel="stylesheet" href="assets/css/custom.css">
+	
+</head>
+
+<body>
+	<div class="bs-example bs-navbar-top-example" data-example-id="navbar-fixed-to-top">
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="collapsed navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-7"
+					 aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="/#!/" class="navbar-brand">
+						<p style="margin-top:-15px">
+							<img src="assets/images/icon/favicon-32x32.png" alt="covfefe">&nbsp;covfefe
+						</p>
+					</a>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-7">
+					<ul class="nav navbar-nav">
+						<li>
+							<a href="/#!/">Home</a>
+						</li>
+						<!-- <li>
+							<a href="/#!/orders">Orders</a>
+						</li> -->
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Statistics
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<!-- <li>
+									<a href="/#!/statistics/?query=stock">Stock</a>
+								</li> -->
+								<li>
+									<a href="/#!/statistics/?query=consumption">Consumption</a>
+								</li>
+								<li>
+									<a href="/#!/statistics/?query=frequency">Frequency</a>
+								</li>
+								<li>
+									<a href="/#!/statistics/?query=distribution">Distribution</a>
+								</li>
+							</ul>
+						</li>
+						<% if(user) { %>
+							<li>
+								<a href="/signout">Signout</a>
+							</li>
+						<% } %>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+
+	<div class="container">
+		<div style="margin-top: 20px"></div>
+		<div class="row col-12-md">
+
+		</div>
+		<!-- Render AngularJS views  -->
+		<div ng-view></div>
+	</div>
+
+
+	<!-- Render the user object -->
+	<script type="text/javascript">
+		window.user = <%- user || 'null' %>;
+	</script>
+
+	<!-- Load local libraries -->
+	<script type="text/javascript" src="lib/angular/angular.js"></script>
+	<script type="text/javascript" src="lib/angular-route/angular-route.js"></script>
+	<script type="text/javascript" src="lib/angular-resource/angular-resource.js"></script>
+	<script type="text/javascript" src="lib/angular-i18n/angular-locale_de-de.js"></script>
+	<script type="text/javascript" src="lib/chart.js/dist/Chart.js"></script>
+	<script type="text/javascript" src="lib/angular-chart.js/dist/angular-chart.js"></script>
+	<script type="text/javascript" src="lib/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="lib/bootstrap/dist/js/bootstrap.js"></script>
+
+	<!-- Load the orders module -->
+	<script type="text/javascript" src="orders/orders.client.module.js"></script>
+	<script type="text/javascript" src="orders/controllers/orders.client.controller.js"></script>
+	<script type="text/javascript" src="orders/services/orders.client.service.js"></script>
+	<script type="text/javascript" src="orders/services/current-order.client.service.js"></script>
+	<script type="text/javascript" src="orders/config/orders.client.routes.js"></script>
+
+	<!-- Load the items module -->
+	<script type="text/javascript" src="items/items.client.module.js"></script>
+	<script type="text/javascript" src="items/controllers/items.client.controller.js"></script>
+	<script type="text/javascript" src="items/services/items.client.service.js"></script>
+	<script type="text/javascript" src="items/config/items.client.routes.js"></script>
+
+	<!-- Load the home module -->
+	<script type="text/javascript" src="home/home.client.module.js"></script>
+	<script type="text/javascript" src="home/controllers/home.client.controller.js"></script>
+	<script type="text/javascript" src="home/config/home.client.routes.js"></script>
+
+	<!-- Load the statistics module -->
+	<script type="text/javascript" src="statistics/statistics.client.module.js"></script>
+	<script type="text/javascript" src="statistics/controllers/statistics.client.controller.js"></script>
+	<script type="text/javascript" src="statistics/config/statistics.client.routes.js"></script>
+
+	<!-- Load the users module -->
+	<script type="text/javascript" src="users/users.client.module.js"></script>
+	<script type="text/javascript" src="users/services/authentication.client.service.js"></script>
+	<script type="text/javascript" src="users/services/users.client.service.js"></script>
+	<script type="text/javascript" src="users/services/user-selection.client.service.js"></script>
+	<script type="text/javascript" src="users/services/user-stats.client.service.js"></script>
+	<script type="text/javascript" src="users/controllers/users.client.controller.js"></script>
+	<script type="text/javascript" src="users/config/users.client.routes.js"></script>
+
+	<!-- Bootstrap AngularJS application -->
+	<script type="text/javascript" src="application.js"></script>
+	<!-- Load Custom Directives -->
+	<script type="text/javascript" src="home/directives/description.client.directive.js"></script>
+	<!-- <script src="//localhost:35729/livereload.js"></script> -->
+</body>
+
+</html>
