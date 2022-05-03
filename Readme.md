@@ -14,7 +14,7 @@ Search and replace the following according to your needs:
 * covfefe.domain.TLD --> URL for the app
 * covfefe@domain.TLD --> Sender address for the emails
 
-Buld the docker image: 
+Build the docker image: 
 
 `docker build -t covfefe .`
 ### Run
@@ -22,7 +22,7 @@ Buld the docker image:
 
 ### Creation of Admin User
 1. [Add](#Add-Users) a new user to the database
-2. Set the admin flag for the user to true (e.g. via mongo-express http://domain.TLD/8081)
+2. Set the admin flag for the user to true (e.g., via mongo-express http://domain.TLD/8081)
 3. [Update](#Update-Users) other users (e.g. their balance)
 ## Maintenance
 The following commands should be run inside the `data` directory.
@@ -36,16 +36,16 @@ The following commands should be run inside the `data` directory.
 
 ### Add Users
 
-In order to add users to **covfefe** you have to follow the following steps.
+In order to add users to **covfefe**, you have to follow the following steps.
 
 1.  sign up @ http://domain.TLD/signup
 2.  fill in the first and last name as well as the email address of the user
-3.  the password cannot be blank at the moment, but does not have a function so just type `01234567`
-4.  if successful you can click signout and you can now proceed with the next step and update the balance of the newly created user
+3.  the password cannot be blank at the moment but does not have a function, so, e.g., just type `01234567`
+4.  if successful, you can click signout, and you can now proceed with the next step and update the balance of the newly created user
 
 ### Update Users
 
-In order to update users you have to sign in with a user account that has admin privileges.
+In order to update users, you have to sign in with a user account that has admin privileges.
 
 1.  sign in @ http://domain.TLD/signin
 2.  filter for the name of the person you want to edit
@@ -56,7 +56,7 @@ In order to update users you have to sign in with a user account that has admin 
 ## General Features
 
 * sign-up/sign-in (sign-in is only required for admins)
-* uses mongodb, express, angular and node
+* uses mongodb, express, angular, and node
 
 ### User Features
 
