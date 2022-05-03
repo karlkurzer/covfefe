@@ -5,12 +5,13 @@
 var mongoose = require("mongoose"),
   nodemailer = require("nodemailer"),
   Email = require("email-templates"),
+	config = require('../../config/config'),
   Order = mongoose.model("Order"),
   User = mongoose.model("User");
 
 const email = new Email({
   message: {
-    from: "covfefe@domain.TLD"
+    from: config.emailSender
   },
   transport: {
     jsonTransport: true
@@ -24,6 +25,19 @@ const email = new Email({
 });
 
 let transporter = nodemailer.createTransport({ host: "mail.domain.TLD", port: 25 });
+// let transporter = nodemailer.createTransport({
+//   host: "smtp.domain.TLD",
+//   port: 25,
+//   secure: false, // use TLS
+//   auth: {
+//     user: "USER",
+//     pass: "PASSWORD",
+//   },
+//   tls: {
+//     // do not fail on invalid certs
+//     rejectUnauthorized: false,
+//   },
+// });
 
 // Create a new error handling controller method
 var getErrorMessage = function(err) {
@@ -78,7 +92,7 @@ var sendBalanceInformation = function(mailOptions, callback) {
 exports.depositNotification = function(req, res, next) {
   // setup email data with unicode symbols
   req.mailOptions = {
-    from: "covfefe@domain.TLD", // sender address
+    from: config.emailSender, // sender address
     to: req.user.email, // list of receivers
     subject: "Deposit Notification" // Subject line
   };
@@ -108,7 +122,7 @@ exports.balanceInformation = function(users) {
       var user = users.pop();
 
       var mailOptions = {
-        from: "covfefe@domain.TLD", // sender address
+        from: config.emailSender, // sender address
         to: user.email, // list of receivers
         subject: "Balance Information" // Subject line
       };

@@ -8,11 +8,16 @@
 ## Run Instructions
 ### Prerequisites
 
+Adjust the [config](config/env/development.js) according to your needs. At least the following are required:
+
+* domain: "domain.TLD" --> Regex to allow only users with email addresses ending in domain.TLD
+* emailDomain: "^.+@domain.TLD$" --> Regex to allow only users with email addresses ending in domain.TLD
+* emailSender: "covfefe@domain.TLD" --> Email address to send emails from
+
 Search and replace the following according to your needs:
 
 * domain.TLD --> Regex to allow only users with email addresses ending in domain.TLD
 * covfefe.domain.TLD --> URL for the app
-* covfefe@domain.TLD --> Sender address for the emails
 
 Build the docker image: 
 
