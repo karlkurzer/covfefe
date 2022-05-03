@@ -8,7 +8,7 @@ COPY package*.json ./
 RUN npm install
 
 COPY bower*.json ./
-RUN ./node_modules/bower/bin/bower install
+RUN ./node_modules/bower/bin/bower install --allow-root
 
 # Bundle app source
 COPY . .
